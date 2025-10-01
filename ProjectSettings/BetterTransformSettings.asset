@@ -41,7 +41,7 @@ MonoBehaviour:
   maxChildCountForSizeCalculation: 50
   maxChildInspectors: 10
   constantSizeUpdate: 0
-  autoRefreshSize: 1
+  autoRefreshSize: 0
   autoRefreshSizeInLocalSpaceInPlaymode: 0
   showSizeGizmo: 1
   sizeGizmoOutlineThickness: 1
