@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb0db3f3231a5e248b092562f93f61ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: TinyGiantStudio.BetterInspector.BetterTransform.Editor::TinyGiantStudio.BetterInspector.BetterTransformSettings
+  currentWorkSpace: 0
+  showCopyPasteButtons: 1
+  fieldRoundingAmount: 5
+  roundPositionField: 0
+  roundRotationField: 0
+  roundScaleField: 0
+  animatedFoldout: 1
+  pingSelfButton: 0
+  showSiblingIndex: 0
+  showAssetGuid: 0
+  showWhySizeIsHiddenLabel: 1
+  loadDefaultInspector: 1
+  logPerformance: 0
+  logDetailedPerformance: 0
+  overrideInspectorColor: 1
+  inspectorColorInLocalSpace: {r: 1, g: 1, b: 1, a: 0}
+  inspectorColorInWorldSpace: {r: 0, g: 0, b: 1, a: 0.025}
+  overrideFoldoutColor: 0
+  foldoutColor: {r: 0, g: 1, b: 0, a: 0.025}
+  showSizeInLine: 0
+  showSizeFoldout: 1
+  showSizeCenter: 1
+  includeChildBounds: 1
+  ignoreParticleAndVFXInSizeCalculation: 0
+  currentSizeType: 0
+  lockSizeAspectRatio: 0
+  maxChildCountForSizeCalculation: 50
+  maxChildInspectors: 10
+  constantSizeUpdate: 0
+  autoRefreshSize: 1
+  autoRefreshSizeInLocalSpaceInPlaymode: 0
+  showSizeGizmo: 1
+  sizeGizmoOutlineThickness: 1
+  sizeGizmoOutlineColorX: {r: 1, g: 0, b: 0, a: 1}
+  sizeGizmoOutlineColorY: {r: 0, g: 1, b: 0, a: 1}
+  sizeGizmoOutlineColorZ: {r: 0, g: 0, b: 1, a: 1}
+  showSizeLabelGizmo: 1
+  sizeGizmoLabelSize: 10
+  sizeGizmoLabelColorX: {r: 1, g: 1, b: 1, a: 1}
+  sizeGizmoLabelColorY: {r: 1, g: 1, b: 1, a: 1}
+  sizeGizmoLabelColorZ: {r: 1, g: 1, b: 1, a: 1}
+  sizeGizmoLabelBackgroundColorX: {r: 0.65, g: 0, b: 0, a: 1}
+  sizeGizmoLabelBackgroundColorY: {r: 0.1008, g: 0.4842, b: 0, a: 1}
+  sizeGizmoLabelBackgroundColorZ: {r: 0, g: 0.189, b: 0.522, a: 1}
+  showAxisOnLabel: 1
+  showUnitOnLabel: 1
+  positionLabelAtCenter: 0
+  positionLabelAtClosestAxis: 1
+  positionLabelAtCornerAxis: 0
+  labelOffset: 0
+  showSizeGizmoLabelOnBothSide: 1
+  showSizeGizmosLabelHandle: 0
+  minimumSizeForDoubleSidedLabel: 10
+  gizmoMaximumDecimalPoints: 4
+  showParentChildTransform: 1
