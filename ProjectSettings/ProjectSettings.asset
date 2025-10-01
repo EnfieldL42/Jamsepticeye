@@ -825,7 +825,23 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: KAMGAM_UGUI_NAVIGATION_WIZARD
+    EmbeddedLinux: KAMGAM_UGUI_NAVIGATION_WIZARD
+    GameCoreScarlett: KAMGAM_UGUI_NAVIGATION_WIZARD
+    GameCoreXboxOne: KAMGAM_UGUI_NAVIGATION_WIZARD
+    Kepler: KAMGAM_UGUI_NAVIGATION_WIZARD
+    LinuxHeadlessSimulation: KAMGAM_UGUI_NAVIGATION_WIZARD
+    Nintendo Switch: KAMGAM_UGUI_NAVIGATION_WIZARD
+    Nintendo Switch 2: KAMGAM_UGUI_NAVIGATION_WIZARD
+    PS4: KAMGAM_UGUI_NAVIGATION_WIZARD
+    PS5: KAMGAM_UGUI_NAVIGATION_WIZARD
+    QNX: KAMGAM_UGUI_NAVIGATION_WIZARD
+    Standalone: KAMGAM_UGUI_NAVIGATION_WIZARD
+    VisionOS: KAMGAM_UGUI_NAVIGATION_WIZARD
+    WebGL: KAMGAM_UGUI_NAVIGATION_WIZARD
+    XboxOne: KAMGAM_UGUI_NAVIGATION_WIZARD
+    tvOS: KAMGAM_UGUI_NAVIGATION_WIZARD
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
