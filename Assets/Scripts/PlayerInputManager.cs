@@ -5,10 +5,10 @@ public class PlayerInputManager : MonoBehaviour
     public static PlayerInputManager playerInputManager;
 
     private PlayerManager player;
-    private PlayerControls playerControls;
+    public PlayerControls playerControls;
 
     [Header("Movement Inputs")]
-    [SerializeField] Vector2 movementInput;
+    public Vector2 movementInput;
     public float verticalInput;
     public float horizontalInput;
     public float moveAmount;
