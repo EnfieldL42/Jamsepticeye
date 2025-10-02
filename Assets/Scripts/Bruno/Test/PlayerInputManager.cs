@@ -6,6 +6,7 @@ public class PlayerInputManager : MonoBehaviour
 
     private PlayerManager player;
     public PlayerControls playerControls;
+    [HideInInspector] public bool ControlsEnabled = false;
 
     [Header("Movement Inputs")]
     public Vector2 movementInput;
@@ -44,6 +45,7 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerMovement.Movement.canceled += i => movementInput = Vector2.zero;
 
             playerControls.Enable();
+            ControlsEnabled = true;
         }
     }
     private void OnDestroy()

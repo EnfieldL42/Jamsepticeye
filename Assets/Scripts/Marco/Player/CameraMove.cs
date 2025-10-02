@@ -32,21 +32,21 @@ public class CameraMove : MonoBehaviour
 
     private IEnumerator WaitForPlayerInputManager()
     {
-        while (PlayerInputManager.playerInputManager == null || PlayerInputManager.playerInputManager.playerControls == null)
+        while (PlayerInputManager.playerInputManager == null || !PlayerInputManager.playerInputManager.ControlsEnabled)
         {
             yield return null;
         }
 
+        print(PlayerInputManager.playerInputManager.ControlsEnabled);
         Controls = PlayerInputManager.playerInputManager.playerControls;
+        Controls.Enable();
+
         Controls.PlayerMovement.Look.started += OnCameraMoved;
 
         Controls.PlayerMovement.Look.canceled += OnCameraStopped;
         CameraInitialized = true;
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-        print("CAMERA INITIALIZED SIGMAAAAAAAAA");
+        GameManager.Instance.SetCurstorState(CursorLockMode.Locked, false);
     }
 
     private void Start()
@@ -58,10 +58,12 @@ public class CameraMove : MonoBehaviour
     {
         Controls.PlayerMovement.Look.started -= OnCameraMoved;
         Controls.PlayerMovement.Look.canceled -= OnCameraStopped;
+        print("Called");
     }
 
     private void OnCameraMoved(InputAction.CallbackContext ctx)
     {
+        print("moved");
         CameraInputs = ctx.ReadValue<Vector2>();
     }
 

@@ -214,6 +214,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GamePause"",
+                    ""type"": ""Button"",
+                    ""id"": ""d3cc1c78-f511-4cf0-85c0-08a6946c618f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -225,6 +234,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Reel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d44cb1fe-97be-4b0b-829a-6db8bb4adceb"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GamePause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -240,6 +260,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // Player Actions
         m_PlayerActions = asset.FindActionMap("Player Actions", throwIfNotFound: true);
         m_PlayerActions_Reel = m_PlayerActions.FindAction("Reel", throwIfNotFound: true);
+        m_PlayerActions_GamePause = m_PlayerActions.FindAction("GamePause", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -429,6 +450,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerActions;
     private List<IPlayerActionsActions> m_PlayerActionsActionsCallbackInterfaces = new List<IPlayerActionsActions>();
     private readonly InputAction m_PlayerActions_Reel;
+    private readonly InputAction m_PlayerActions_GamePause;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player Actions".
     /// </summary>
@@ -444,6 +466,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "PlayerActions/Reel".
         /// </summary>
         public InputAction @Reel => m_Wrapper.m_PlayerActions_Reel;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerActions/GamePause".
+        /// </summary>
+        public InputAction @GamePause => m_Wrapper.m_PlayerActions_GamePause;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -473,6 +499,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Reel.started += instance.OnReel;
             @Reel.performed += instance.OnReel;
             @Reel.canceled += instance.OnReel;
+            @GamePause.started += instance.OnGamePause;
+            @GamePause.performed += instance.OnGamePause;
+            @GamePause.canceled += instance.OnGamePause;
         }
 
         /// <summary>
@@ -487,6 +516,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Reel.started -= instance.OnReel;
             @Reel.performed -= instance.OnReel;
             @Reel.canceled -= instance.OnReel;
+            @GamePause.started -= instance.OnGamePause;
+            @GamePause.performed -= instance.OnGamePause;
+            @GamePause.canceled -= instance.OnGamePause;
         }
 
         /// <summary>
@@ -556,5 +588,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnReel(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "GamePause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnGamePause(InputAction.CallbackContext context);
     }
 }
