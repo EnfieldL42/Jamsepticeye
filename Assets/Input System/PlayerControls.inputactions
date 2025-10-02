@@ -139,9 +139,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Cast",
+                    "name": "Interact",
                     "type": "Button",
-                    "id": "4e473801-31a8-435c-a0e5-8f0e1a6ee5fd",
+                    "id": "9e7b34d8-ee80-4d42-b408-c89814be6cea",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DialogueSkip",
+                    "type": "Button",
+                    "id": "db00f0a0-0a2c-41ec-a1fa-33abb31362b9",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -173,12 +182,23 @@
                 },
                 {
                     "name": "",
-                    "id": "a8cc2c41-a2f7-488a-83cb-b662ad63574a",
-                    "path": "<Mouse>/rightButton",
+                    "id": "102a88bf-4003-4c86-8d09-d75d5a28e964",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Cast",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "13366f99-ac12-459a-89fe-61ac69dd62d9",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DialogueSkip",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

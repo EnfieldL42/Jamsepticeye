@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class CameraMove : MonoBehaviour
 {
-    public static CameraMove Instance;
+    public static CameraMove Instance { get; private set; }
 
     [Header("References")]
     [SerializeField] private Rigidbody PlayerRigidbody;
@@ -17,6 +17,7 @@ public class CameraMove : MonoBehaviour
 
     [Header("Settings")]
     public bool PlayerControlsCamera = true;
+
     private bool PreviousCameraState = true;
     [SerializeField] private bool CameraInverted = false;
 
@@ -37,7 +38,6 @@ public class CameraMove : MonoBehaviour
             yield return null;
         }
 
-        print(PlayerInputManager.playerInputManager.ControlsEnabled);
         Controls = PlayerInputManager.playerInputManager.playerControls;
         Controls.Enable();
 
@@ -49,6 +49,18 @@ public class CameraMove : MonoBehaviour
         GameManager.Instance.SetCurstorState(CursorLockMode.Locked, false);
     }
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void Start()
     {
         StartCoroutine(WaitForPlayerInputManager());
@@ -58,12 +70,10 @@ public class CameraMove : MonoBehaviour
     {
         Controls.PlayerMovement.Look.started -= OnCameraMoved;
         Controls.PlayerMovement.Look.canceled -= OnCameraStopped;
-        print("Called");
     }
 
     private void OnCameraMoved(InputAction.CallbackContext ctx)
     {
-        print("moved");
         CameraInputs = ctx.ReadValue<Vector2>();
     }
 

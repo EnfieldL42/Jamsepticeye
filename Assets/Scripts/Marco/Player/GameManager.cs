@@ -6,15 +6,16 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     private PlayerControls Controls;
-    [SerializeField] private float GameSpeed = 1f;
-
     [SerializeField] private float PauseSpeed = 0.15f;
+
     private float TimeElapsed = 0f;
     private float TargetSpeed = 0f;
 
     public bool UpdatingGameTime = false;
     private bool GamePaused = false;
+
     private float StartSpeed = 0f;
+    private bool Initialized = false;
 
     private void Awake()
     {
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
         Controls.Enable();
 
         Controls.PlayerActions.GamePause.started += ToggleEscapeMenu;
+        Initialized = true;
     }
 
     private void Start()
@@ -60,9 +62,8 @@ public class GameManager : MonoBehaviour
 
     private void ToggleEscapeMenu(InputAction.CallbackContext ctx)
     {
-        print("Pressed");
-
         GamePaused = !GamePaused;
+        CameraMove.Instance.PlayerControlsCamera = !GamePaused;
         UpdatingGameTime = true;
 
         TimeElapsed = 0f;
@@ -77,6 +78,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (!Initialized) return;
+        UIManager.Instance.FPSText.SetText("FPS {0:0}", 1 / Time.deltaTime);
+
         if (!UpdatingGameTime) return;
 
         if (TimeElapsed < PauseSpeed)
