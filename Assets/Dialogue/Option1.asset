@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24451f867ad2a6146baf57f938a44d18, type: 3}
-  m_Name: SpeedAction
-  m_EditorClassIdentifier: Febucci.TextAnimator.Runtime::Febucci.UI.Actions.SpeedAction
-  tagID: speed
-  defaultSpeed: 10
+  m_Script: {fileID: 0}
+  m_Name: Option1
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueOption
+  OptionText: option 1
+  ClosesDialogue: 0
+  ProceedingDialogue: {fileID: 11400000, guid: 3a2bdb7d782458d46888ad74a977f6af, type: 2}

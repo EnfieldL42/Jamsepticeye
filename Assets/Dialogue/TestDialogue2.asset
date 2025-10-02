@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1574049d2299ce4490b026e5cde5550, type: 3}
   m_Name: TestDialogue2
   m_EditorClassIdentifier: Assembly-CSharp::DialogueObject
-  SpeakerName: 
-  DialogueText: 
+  SpeakerName: player
+  DialogueText: hello this is also another test dialogue, next up will be a dialogue
+    with choices bro
   ClosesDialogue: 0
-  ProceedingDialogue: {fileID: 0}
+  ProceedingDialogue: {fileID: 11400000, guid: 48aaea4a730f5d741a605e3c3d8096da, type: 2}

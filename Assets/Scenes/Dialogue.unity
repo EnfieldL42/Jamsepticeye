@@ -245,6 +245,7 @@ MonoBehaviour:
   DialogueName: {fileID: 276998289}
   DialogueOptionsHolder: {fileID: 1217113134}
   DialogueOptionPrefab: {fileID: 4108225924498377596, guid: 84ee63e58e74c65458e76b7d03022c9c, type: 3}
+  test: {fileID: 11400000, guid: 45fc96a0aa9e29f429a6a9cdb2d5fafe, type: 2}
 --- !u!95 &57339475
 Animator:
   serializedVersion: 7
@@ -565,6 +566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractTest
   Data: {fileID: 11400000, guid: 8d717ad5000ed9c45b75712a1f20c375, type: 2}
+  StartingDialogue: {fileID: 11400000, guid: 45fc96a0aa9e29f429a6a9cdb2d5fafe, type: 2}
 --- !u!1 &638338999
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,7 +879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Febucci.TextAnimator.Runtime::Febucci.UI.TypewriterByCharacter
   useTypeWriter: 1
-  startTypewriterMode: -1
+  startTypewriterMode: 0
   hideAppearancesOnSkip: 0
   hideDisappearancesOnSkip: 0
   triggerEventsOnSkip: 0
@@ -936,16 +938,16 @@ MonoBehaviour:
   typewriterStartsAutomatically: 0
   animationLoop: 0
   timeScale: 0
-  _text: 
+  _text: New Text
   useDynamicScaling: 0
   referenceFontSize: 10
   isResettingTimeOnNewText: 1
   useDefaultDatabases: 1
-  databaseBehaviors: {fileID: 0}
-  databaseAppearances: {fileID: 0}
+  databaseBehaviors: {fileID: 11400000, guid: 3eb2557ef0dad7640b6b63209fd54588, type: 2}
+  databaseAppearances: {fileID: 11400000, guid: 20206ae2db2a97e4da8ea60e59632638, type: 2}
   useDefaultStyleSheet: 1
   styleSheet: {fileID: 0}
-  databaseActions: {fileID: 0}
+  databaseActions: {fileID: 11400000, guid: 602c1fb92cede0542b0280064ac324fb, type: 2}
   defaultAppearancesTags:
   - size
   defaultDisappearancesTags:
@@ -1419,7 +1421,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1457213136}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0

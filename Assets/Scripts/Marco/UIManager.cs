@@ -1,8 +1,10 @@
 using Febucci.UI;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -11,7 +13,9 @@ public class UIManager : MonoBehaviour
 
     private PlayerControls Controls;
     private bool InTypewriter = false;
+
     private DialogueNode CurrentDialogueNode;
+    private List<DialogueButton> ActiveOptions = new List<DialogueButton>();
 
     [Header("Stats UI")]
     public TextMeshProUGUI FPSText;
@@ -27,7 +31,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Transform DialogueOptionsHolder;
     [SerializeField] private DialogueButton DialogueOptionPrefab;
 
-    public DialogueObject test;
+    public DialogueNode test;
 
     private void Awake()
     {
@@ -41,7 +45,7 @@ public class UIManager : MonoBehaviour
         }
 
         CanvasAnimator = GetComponent<Animator>();
-        StartCoroutine(WaitForControls());
+        //StartCoroutine(WaitForControls());
     }
 
     private IEnumerator WaitForControls()
@@ -55,12 +59,20 @@ public class UIManager : MonoBehaviour
         Controls.Enable();
 
         Controls.PlayerActions.DialogueSkip.performed += ProceedDialogue;
-        StartDialogue(test);
+    }
+
+    private void Start()
+    {
+        Controls = PlayerInputManager.playerInputManager.playerControls;
+        //Controls.Enable();
+
+        Controls.PlayerActions.DialogueSkip.started += ProceedDialogue;
+        //StartDialogue(test);
     }
 
     private void OnDisable()
     {
-        Controls.PlayerActions.DialogueSkip.performed -= ProceedDialogue;
+        Controls.PlayerActions.DialogueSkip.started -= ProceedDialogue;
     }
 
     public void ShowInteractionPrompt(string Text = default)
@@ -88,6 +100,25 @@ public class UIManager : MonoBehaviour
     private void CloseDialogue()
     {
         CanvasAnimator.SetBool("ShowDialogue", false);
+        CameraMove.Instance.PlayerControlsCamera = true;
+        GameManager.Instance.SetCurstorState(CursorLockMode.Locked, false);
+
+        PlayerHandler.Instance.SetInteractionListening(true);
+        PlayerMovement.Instance.MovementDisabled = false;
+    }
+
+    private void SetNextDialogue()
+    {
+        if (CurrentDialogueNode is DialogueObject RegularDialogue)
+        {
+            ShowRegularDialogue(RegularDialogue);
+            return;
+        }
+        else if (CurrentDialogueNode is DialogueOptionsObject OptionsDialogue)
+        {
+            ShowOptionsDialogue(OptionsDialogue);
+            return;
+        }
     }
 
     private void ProceedDialogue(InputAction.CallbackContext ctx)
@@ -98,24 +129,20 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            if (CurrentDialogueNode.ClosesDialogue)
+            if (CurrentDialogueNode is DialogueObject RegularDialogue)
             {
-                CloseDialogue();
-                return;
-            }
-            else
-            {
-                if (CurrentDialogueNode is DialogueObject RegularDialogue)
+                if (CurrentDialogueNode.ClosesDialogue)
+                {
+                    CloseDialogue();
+                    return;
+                }
+                else
                 {
                     if (RegularDialogue.ProceedingDialogue != null)
                     {
-                        //ShowRegularDialogue(RegularDialogue.ProceedingDialogue);
+                        CurrentDialogueNode = RegularDialogue.ProceedingDialogue;
+                        SetNextDialogue();
                     }
-                    return;
-                }
-                else if (CurrentDialogueNode is DialogueOptionsObject OptionsDialogue)
-                {
-                    ShowOptionsDialogue(OptionsDialogue);
                     return;
                 }
             }
@@ -125,7 +152,57 @@ public class UIManager : MonoBehaviour
     public void DialogueTextFinished()
     {
         InTypewriter = false;
-        print("Dun");
+
+        if (CurrentDialogueNode is DialogueOptionsObject OptionsDialogue)
+        {
+            if (OptionsDialogue.DialogueOptions.Count <= 0)
+            {
+                CloseDialogue();
+                return;
+            }
+
+            foreach (DialogueOption DialogueOption in OptionsDialogue.DialogueOptions)
+            {
+                DialogueButton NewButtton = Instantiate(DialogueOptionPrefab, DialogueOptionsHolder);
+                NewButtton.ButtonText.SetText(DialogueOption.OptionText);
+
+                NewButtton.ProceedingDialogue = DialogueOption.ProceedingDialogue;
+                NewButtton.Button.onClick.AddListener(() => DialogueOptionPressed(NewButtton));
+                ActiveOptions.Add(NewButtton);
+            }
+        }
+    }
+
+    private void DialogueOptionPressed(DialogueButton ButtonData)
+    {
+        if (ButtonData.ProceedingDialogue == null)
+        {
+            CloseDialogue();
+            return;
+        }
+        else
+        {
+            CurrentDialogueNode = ButtonData.ProceedingDialogue;
+
+            foreach (DialogueButton OptionButton in ActiveOptions)
+            {
+                OptionButton.Button.onClick.RemoveAllListeners();
+            }
+
+            for (int i = ActiveOptions.Count - 1; i >= 0; i--)
+            {
+                if (ActiveOptions[i] != null)
+                {
+                    Destroy(ActiveOptions[i].gameObject);
+                }
+            }
+
+            ActiveOptions.Clear();
+            print(ActiveOptions.Count);
+
+            SetNextDialogue();
+            return;
+        }
     }
 
     private void ShowRegularDialogue(DialogueObject Data = default)
@@ -146,24 +223,16 @@ public class UIManager : MonoBehaviour
         DialogueText.StartShowingText();
     }
 
-    public void StartDialogue(DialogueObject DialogueData = default)
+    public void StartDialogue(DialogueNode DialogueData = default)
     {
         if (DialogueData == null) return;
+        CameraMove.Instance.PlayerControlsCamera = false;
+        GameManager.Instance.SetCurstorState(CursorLockMode.None, true);
 
         ClearDialogue();
         CanvasAnimator.SetBool("ShowDialogue", true);
 
         CurrentDialogueNode = DialogueData;
-
-        if (CurrentDialogueNode is DialogueObject RegularDialogue)
-        {
-            ShowRegularDialogue(RegularDialogue);
-            return;
-        }
-        else if (CurrentDialogueNode is DialogueOptionsObject OptionsDialogue)
-        {
-            ShowOptionsDialogue(OptionsDialogue);
-            return;
-        }
+        SetNextDialogue();
     }
 }

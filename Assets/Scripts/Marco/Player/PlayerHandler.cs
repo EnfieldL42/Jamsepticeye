@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class PlayerHandler : MonoBehaviour
@@ -50,15 +51,31 @@ public class PlayerHandler : MonoBehaviour
 
         Controls = PlayerInputManager.playerInputManager.playerControls;
         Controls.Enable();
+
         InteractionKeybind = Controls.PlayerActions.Interact.bindings[0].ToDisplayString();
+        Controls.PlayerActions.Interact.started += Interact;
 
         InteractionLayerID = (int)Mathf.Log(InteractionLayerMask.value, 2);
         PlayerInitialized = true;
     }
 
+    private void OnDisable()
+    {
+        Controls.PlayerActions.Interact.started -= Interact;
+    }
+
     private void Start()
     {
-        StartCoroutine(WaitForInputManager());
+        //StartCoroutine(WaitForInputManager());
+
+        Controls = PlayerInputManager.playerInputManager.playerControls;
+        //Controls.Enable();
+
+        InteractionKeybind = Controls.PlayerActions.Interact.bindings[0].ToDisplayString();
+        Controls.PlayerActions.Interact.started += Interact;
+
+        InteractionLayerID = (int)Mathf.Log(InteractionLayerMask.value, 2);
+        PlayerInitialized = true;
     }
 
     private void HideInteraction()
@@ -67,6 +84,14 @@ public class PlayerHandler : MonoBehaviour
         CurrentDetectedInteractable = null;
         UIManager.Instance.HideInteractionPrompt();
         return;
+    }
+
+    private void Interact(InputAction.CallbackContext ctx)
+    {
+        print(CurrentDetectedInteractable == null);
+        if (CurrentDetectedInteractable == null) return;
+
+        CurrentDetectedInteractable.OnInteracted(this);
     }
 
     public void SetInteractionListening(bool IsListening)

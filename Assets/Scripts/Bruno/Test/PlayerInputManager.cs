@@ -25,16 +25,6 @@ public class PlayerInputManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    private void Start()
-    {
-        player = GetComponent<PlayerManager>();
-        playerControls = new PlayerControls();
-    }
-
-    private void OnEnable()
-    {
 
         if (playerControls == null)
         {
@@ -47,6 +37,34 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.Enable();
             ControlsEnabled = true;
         }
+    }
+
+    private void Start()
+    {
+        player = GetComponent<PlayerManager>();
+        playerControls = new PlayerControls();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
+    }
+
+    private void OnEnable()
+    {
+
+        /*
+        if (playerControls == null)
+        {
+            playerControls = new PlayerControls();
+
+            //movement
+            playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>(); //stores vector 2 of input in i then reads it and adds it to the vector 2 movement
+            playerControls.PlayerMovement.Movement.canceled += i => movementInput = Vector2.zero;
+
+            playerControls.Enable();
+            ControlsEnabled = true;
+        }*/
     }
     private void OnDestroy()
     {

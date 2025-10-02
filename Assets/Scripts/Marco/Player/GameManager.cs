@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
         Cursor.visible = Visible;
     }
 
+    /*
     private IEnumerator WaitForControls()
     {
         while (PlayerInputManager.playerInputManager == null || !PlayerInputManager.playerInputManager.ControlsEnabled)
@@ -48,16 +49,22 @@ public class GameManager : MonoBehaviour
 
         Controls.PlayerActions.GamePause.started += ToggleEscapeMenu;
         Initialized = true;
-    }
+    }*/
 
     private void Start()
     {
-        StartCoroutine(WaitForControls());
+        //StartCoroutine(WaitForControls());
+        Controls = PlayerInputManager.playerInputManager.playerControls;
+        Controls.Enable();
+
+        Controls.PlayerActions.GamePause.started += ToggleEscapeMenu;
+        Initialized = true;
     }
 
     private void OnDisable()
     {
         Controls.PlayerActions.GamePause.started -= ToggleEscapeMenu;
+        Controls.Disable();
     }
 
     private void ToggleEscapeMenu(InputAction.CallbackContext ctx)

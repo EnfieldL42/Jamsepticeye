@@ -63,7 +63,17 @@ public class CameraMove : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(WaitForPlayerInputManager());
+        //StartCoroutine(WaitForPlayerInputManager());
+
+        Controls = PlayerInputManager.playerInputManager.playerControls;
+        //Controls.Enable();
+
+        Controls.PlayerMovement.Look.started += OnCameraMoved;
+
+        Controls.PlayerMovement.Look.canceled += OnCameraStopped;
+        CameraInitialized = true;
+
+        GameManager.Instance.SetCurstorState(CursorLockMode.Locked, false);
     }
 
     private void OnDisable()

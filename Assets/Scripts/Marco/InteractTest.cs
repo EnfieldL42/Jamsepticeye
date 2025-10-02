@@ -3,10 +3,15 @@ using UnityEngine;
 public class InteractTest : MonoBehaviour, IInteractable
 {
     public InteractionData Data;
+    public DialogueNode StartingDialogue;
 
     public void OnInteracted(PlayerHandler Player)
     {
+        UIManager.Instance.StartDialogue(StartingDialogue);
+        PlayerHandler.Instance.SetInteractionListening(false);
 
+        UIManager.Instance.HideInteractionPrompt();
+        PlayerMovement.Instance.MovementDisabled = true;
     }
     
     public string GetInteractionPrompt(PlayerHandler Player)

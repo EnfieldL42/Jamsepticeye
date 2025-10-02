@@ -6,4 +6,5 @@ public class DialogueButton : MonoBehaviour
 {
     public TextMeshProUGUI ButtonText;
     public Button Button;
+    public DialogueNode ProceedingDialogue;
 }
