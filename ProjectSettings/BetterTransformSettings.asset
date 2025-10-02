@@ -43,12 +43,12 @@ MonoBehaviour:
   constantSizeUpdate: 0
   autoRefreshSize: 0
   autoRefreshSizeInLocalSpaceInPlaymode: 0
-  showSizeGizmo: 1
+  showSizeGizmo: 0
   sizeGizmoOutlineThickness: 1
   sizeGizmoOutlineColorX: {r: 1, g: 0, b: 0, a: 1}
   sizeGizmoOutlineColorY: {r: 0, g: 1, b: 0, a: 1}
   sizeGizmoOutlineColorZ: {r: 0, g: 0, b: 1, a: 1}
-  showSizeLabelGizmo: 1
+  showSizeLabelGizmo: 0
   sizeGizmoLabelSize: 10
   sizeGizmoLabelColorX: {r: 1, g: 1, b: 1, a: 1}
   sizeGizmoLabelColorY: {r: 1, g: 1, b: 1, a: 1}
