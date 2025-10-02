@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1574049d2299ce4490b026e5cde5550, type: 3}
-  m_Name: TestDialogue2
+  m_Script: {fileID: 11500000, guid: 78ab65b14fd4c964dafd28a7ba697ced, type: 3}
+  m_Name: DialogueOption1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueObject
-  SpeakerName: Player
-  DialogueText: 'hello this is also another test dialogue, next up will be a dialogue
-    with choices
+  SpeakerName: '{NPC_Name}'
+  DialogueText: 'You picked the first option, cool
 
 
-    ok.'
+    check out this <slide> slide
+    effect </slide>'
   ClosesDialogue: 0
-  ProceedingDialogue: {fileID: 11400000, guid: 48aaea4a730f5d741a605e3c3d8096da, type: 2}
+  ProceedingDialogue: {fileID: 11400000, guid: c9a9e64296e3f4d4bb8f8a3ee852e5b4, type: 2}

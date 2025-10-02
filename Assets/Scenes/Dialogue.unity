@@ -565,7 +565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractTest
   Data: {fileID: 11400000, guid: 8d717ad5000ed9c45b75712a1f20c375, type: 2}
-  StartingDialogue: {fileID: 11400000, guid: 45fc96a0aa9e29f429a6a9cdb2d5fafe, type: 2}
+  StartingDialogue: {fileID: 11400000, guid: d081d35729fed984a9e14d2531446d8c, type: 2}
 --- !u!1 &638338999
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,10 +813,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
