@@ -1,11 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
-public enum DialogueType
+[Serializable]
+public class DialogueOption
 {
-    RegularDialogue,
-    DialogueButton,
-    DialogueOptions
+    public string OptionText;
+    public bool ClosesDialogue = false;
+
+    public DialogueNode ProceedingDialogue;
 }
 
 public abstract class DialogueNode : ScriptableObject
@@ -18,15 +21,6 @@ public abstract class DialogueNode : ScriptableObject
 [CreateAssetMenu(menuName = "Dialogue/New Regular Dialogue")]
 public class DialogueObject : DialogueNode
 {
-    public DialogueNode ProceedingDialogue;
-}
-
-[CreateAssetMenu(menuName = "Dialogue/New Dialogue Option")]
-public class DialogueOption : ScriptableObject
-{
-    public string OptionText;
-    public bool ClosesDialogue = false;
-
     public DialogueNode ProceedingDialogue;
 }
 

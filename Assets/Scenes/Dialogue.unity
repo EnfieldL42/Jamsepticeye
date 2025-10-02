@@ -245,7 +245,6 @@ MonoBehaviour:
   DialogueName: {fileID: 276998289}
   DialogueOptionsHolder: {fileID: 1217113134}
   DialogueOptionPrefab: {fileID: 4108225924498377596, guid: 84ee63e58e74c65458e76b7d03022c9c, type: 3}
-  test: {fileID: 11400000, guid: 45fc96a0aa9e29f429a6a9cdb2d5fafe, type: 2}
 --- !u!95 &57339475
 Animator:
   serializedVersion: 7
@@ -359,7 +358,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0

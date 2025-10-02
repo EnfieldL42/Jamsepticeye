@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: TestDialogue3
   m_EditorClassIdentifier: Assembly-CSharp::DialogueOptionsObject
-  SpeakerName: ok
+  SpeakerName: '{NPC_Name}'
   DialogueText: ok heres some options have fun ig
   ClosesDialogue: 0
   DialogueOptions:
-  - {fileID: 11400000, guid: 8b91c466b9145274a8c5fe35448883c8, type: 2}
-  - {fileID: 11400000, guid: 576e77f12ffe6764fa27841d3b75fd0a, type: 2}
-  - {fileID: 11400000, guid: b6a7e355b970ddf49a7ac6b94b686e61, type: 2}
+  - OptionText: Option 1 lol
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000, guid: 3a2bdb7d782458d46888ad74a977f6af, type: 2}
+  - OptionText: option 2 (can customize)
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000, guid: 730226ce6954102448e7bacd09f3463f, type: 2}
+  - OptionText: this closes it (can put it anywhere)
+    ClosesDialogue: 1
+    ProceedingDialogue: {fileID: 0}

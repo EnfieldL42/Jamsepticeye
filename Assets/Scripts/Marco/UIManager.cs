@@ -30,8 +30,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Transform DialogueOptionsHolder;
     [SerializeField] private DialogueButton DialogueOptionPrefab;
-
-    public DialogueNode test;
+    private string CurrentNPCName = "";
 
     private void Awake()
     {
@@ -105,6 +104,7 @@ public class UIManager : MonoBehaviour
 
         PlayerHandler.Instance.SetInteractionListening(true);
         PlayerMovement.Instance.MovementDisabled = false;
+        CurrentNPCName = "";
     }
 
     private void SetNextDialogue()
@@ -208,8 +208,15 @@ public class UIManager : MonoBehaviour
     private void ShowRegularDialogue(DialogueObject Data = default)
     {
         InTypewriter = true;
-        DialogueName.SetText(Data.SpeakerName);
 
+        if (Data.SpeakerName.ToLower() == "{npc_name}")
+        {
+            DialogueName.SetText(CurrentNPCName);
+        }
+        else
+        {
+            DialogueName.SetText(Data.SpeakerName);
+        }
         DialogueText.ShowText(Data.DialogueText);
         DialogueText.StartShowingText();
     }
@@ -217,15 +224,25 @@ public class UIManager : MonoBehaviour
     private void ShowOptionsDialogue(DialogueOptionsObject Data = default)
     {
         InTypewriter = true;
-        DialogueName.SetText(Data.SpeakerName);
+
+        if (Data.SpeakerName.ToLower() == "{npc_name}")
+        {
+            DialogueName.SetText(CurrentNPCName);
+        }
+        else
+        {
+            DialogueName.SetText(Data.SpeakerName);
+        }
 
         DialogueText.ShowText(Data.DialogueText);
         DialogueText.StartShowingText();
     }
 
-    public void StartDialogue(DialogueNode DialogueData = default)
+    public void StartDialogue(DialogueNode DialogueData = default, string NPCName = default)
     {
         if (DialogueData == null) return;
+        CurrentNPCName = NPCName;
+
         CameraMove.Instance.PlayerControlsCamera = false;
         GameManager.Instance.SetCurstorState(CursorLockMode.None, true);
 

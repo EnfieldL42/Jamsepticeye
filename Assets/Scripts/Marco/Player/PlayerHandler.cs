@@ -88,7 +88,6 @@ public class PlayerHandler : MonoBehaviour
 
     private void Interact(InputAction.CallbackContext ctx)
     {
-        print(CurrentDetectedInteractable == null);
         if (CurrentDetectedInteractable == null) return;
 
         CurrentDetectedInteractable.OnInteracted(this);

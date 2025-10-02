@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1574049d2299ce4490b026e5cde5550, type: 3}
   m_Name: TestDialogue1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueObject
-  SpeakerName: test name
-  DialogueText: dialogue test, this is just showing the animation of this <wave>thing</wave>
-    that is <shake>kinda cool</shake> unsure if i'll use the effects tho
+  SpeakerName: '{NPC_Name}'
+  DialogueText: dialogue test, this is just <color=#ff0000>showing</color> the animation
+    of this <wave>thing</wave> that is <shake>kinda cool</shake> unsure if i'll use
+    the effects tho
   ClosesDialogue: 0
   ProceedingDialogue: {fileID: 11400000, guid: fc6c67acdece4004e9057d7e56fb92a5, type: 2}

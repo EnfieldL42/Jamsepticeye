@@ -7,7 +7,7 @@ public class InteractTest : MonoBehaviour, IInteractable
 
     public void OnInteracted(PlayerHandler Player)
     {
-        UIManager.Instance.StartDialogue(StartingDialogue);
+        UIManager.Instance.StartDialogue(StartingDialogue, Data.Name);
         PlayerHandler.Instance.SetInteractionListening(false);
 
         UIManager.Instance.HideInteractionPrompt();

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1574049d2299ce4490b026e5cde5550, type: 3}
   m_Name: Option2Dialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueObject
-  SpeakerName: ok
-  DialogueText: chose option 2 ok i close as well bye
+  SpeakerName: Player
+  DialogueText: '<shake> hello </shake> <rainb> oh also you can do this </rainb>
+    not that rainbow text is cool but yea you can do that as well <wiggle> ok that''s
+    all </wiggle> '
   ClosesDialogue: 1
   ProceedingDialogue: {fileID: 0}

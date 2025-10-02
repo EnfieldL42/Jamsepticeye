@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: TestDialogue4
   m_EditorClassIdentifier: Assembly-CSharp::DialogueOptionsObject
-  SpeakerName: test
+  SpeakerName: '{NPC_Name}'
   DialogueText: ok this one is another branch
   ClosesDialogue: 0
   DialogueOptions:
-  - {fileID: 11400000, guid: b6a7e355b970ddf49a7ac6b94b686e61, type: 2}
+  - OptionText: loop back to start
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000, guid: 45fc96a0aa9e29f429a6a9cdb2d5fafe, type: 2}
+  - OptionText: close
+    ClosesDialogue: 1
+    ProceedingDialogue: {fileID: 0}

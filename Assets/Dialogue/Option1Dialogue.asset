@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1574049d2299ce4490b026e5cde5550, type: 3}
   m_Name: Option1Dialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueObject
-  SpeakerName: ok
-  DialogueText: pressed dialogue 1, now i close bye
-  ClosesDialogue: 1
-  ProceedingDialogue: {fileID: 0}
+  SpeakerName: '{NPC_Name}'
+  DialogueText: pressed dialogue 1, ok now here's another branch coming up
+  ClosesDialogue: 0
+  ProceedingDialogue: {fileID: 11400000, guid: 731fc7d444fd9da4e80aa8f83ef905e4, type: 2}
