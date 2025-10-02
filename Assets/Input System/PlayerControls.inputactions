@@ -115,6 +115,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Player Actions",
+            "id": "478b7276-73e5-4cea-af55-0634be33dec0",
+            "actions": [
+                {
+                    "name": "Reel",
+                    "type": "Button",
+                    "id": "f846a488-02f2-4cf7-8745-c3cfa3bb4774",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "81b023b9-d718-4b51-ae9c-066899e60d64",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
