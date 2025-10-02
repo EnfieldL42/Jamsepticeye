@@ -759,7 +759,6 @@ MonoBehaviour:
   GroundCheckOffset: {x: 0, y: 0.075, z: 0}
   GroundCheckDistance: 0.1
   PlayerGravity: {fileID: 5197648311257766061}
-  Gravity: -50
   MovementDisabled: 0
   GroundedForce: {x: 0, y: 0, z: 0}
   NonGroundedForce: {x: 0, y: -100, z: 0}
@@ -826,7 +825,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
@@ -1249,6 +1248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerRigidbody: {fileID: 1397247927092131574}
+  CinemachineCamera: {fileID: 0}
   CameraHolder: {fileID: 8009488987612195797}
   CameraRigidbody: {fileID: 8706254338569097978}
   Orientation: {fileID: 3869204846933126383}
@@ -1372,7 +1372,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6617181207571063065}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
