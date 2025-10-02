@@ -146,6 +146,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "DialogueSkip",
+                    "type": "Button",
+                    "id": "db00f0a0-0a2c-41ec-a1fa-33abb31362b9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -179,6 +188,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "13366f99-ac12-459a-89fe-61ac69dd62d9",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DialogueSkip",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

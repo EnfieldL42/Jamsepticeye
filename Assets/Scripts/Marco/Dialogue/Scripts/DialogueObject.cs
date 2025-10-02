@@ -1,27 +1,37 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "New Regular Dialogue", menuName = "Dialogue/New Regular Dialogue")]
-public class DialogueObject : ScriptableObject
+public enum DialogueType
+{
+    RegularDialogue,
+    DialogueButton,
+    DialogueOptions
+}
+
+public abstract class DialogueNode : ScriptableObject
 {
     public string SpeakerName;
     [TextArea] public string DialogueText;
-    public DialogueObject ProceedingDialogue;
+    public bool ClosesDialogue;
 }
 
-[CreateAssetMenu(fileName = "New Dialogue Option", menuName = "Dialogue/New Dialogue Option")]
+[CreateAssetMenu(menuName = "Dialogue/New Regular Dialogue")]
+public class DialogueObject : DialogueNode
+{
+    public DialogueNode ProceedingDialogue;
+}
+
+[CreateAssetMenu(menuName = "Dialogue/New Dialogue Option")]
 public class DialogueOption : ScriptableObject
 {
     public string OptionText;
     public bool ClosesDialogue = false;
 
-    public DialogueObject ProceedingDialogue;
+    public DialogueNode ProceedingDialogue;
 }
 
-[CreateAssetMenu(fileName = "New Dialogue with Options", menuName = "Dialogue/New Dialogue with Options")]
-public class DialogueOptionsObject : ScriptableObject
+[CreateAssetMenu(menuName = "Dialogue/New Dialogue with Options")]
+public class DialogueOptionsObject : DialogueNode
 {
-    public string SpeakerName;
-    [TextArea] public string DialogueText;
     public List<DialogueOption> DialogueOptions = new List<DialogueOption>();
 }
