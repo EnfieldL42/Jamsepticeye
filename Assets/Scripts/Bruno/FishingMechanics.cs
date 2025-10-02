@@ -10,23 +10,35 @@ public class FishingMechanics : MonoBehaviour
     public Slider progressBar;
 
     [Header("Settings")]
-    public float driftSpeed = 200f;      // How fast bar drifts left
-    public float pushSpeed = 300f;       // How fast bar moves right when held
-    public float fishSpeed = 200f;       // How fast fish moves
-    public float fishChangeInterval = 1.5f; // How often fish changes direction
-    public float successRate = 25f;      // % per second gained when overlapping
-    public float failRate = 15f;         // % per second lost when not overlapping
+    public float driftSpeed = 200f;
+    public float pushSpeed = 300f;
+    public float fishSpeed = 200f;
+    public float fishChangeInterval = 1.5f;
+    public float successRate = 25f;
+    public float failRate = 15f;
+    [SerializeField] float initialTimer = 3f;
 
     private RectTransform panelBounds;
     private float barVelocity;
     private float fishDirection;
     private float fishTimer;
+    
 
     private PlayerControls playerControls;
+    [SerializeField] BaitThrowInput throwInput;
+    [SerializeField] BaitFishingTimer fishingTimer;
+
+    // Store initial positions
+    private Vector2 catchBarInitialPos;
+    private Vector2 fishMarkerInitialPos;
+    private float initialTimerStart;
 
     private void Awake()
     {
         playerControls = new PlayerControls();
+        catchBarInitialPos = catchBar.anchoredPosition;
+        fishMarkerInitialPos = fishMarker.anchoredPosition;
+        initialTimerStart = initialTimer;
     }
 
     private void OnEnable()
@@ -42,7 +54,6 @@ public class FishingMechanics : MonoBehaviour
     private void Start()
     {
         panelBounds = GetComponent<RectTransform>();
-        progressBar.value = 0f;
         fishTimer = fishChangeInterval;
         fishDirection = Random.value > 0.5f ? 1f : -1f;
     }
@@ -52,21 +63,23 @@ public class FishingMechanics : MonoBehaviour
         HandlePlayerBar();
         HandleFishMovement();
         HandleProgress();
+        InitialTimer();
+    }
+
+    void InitialTimer()
+    {
+        if (initialTimerStart > 0)
+            initialTimerStart -= Time.deltaTime;
     }
 
     void HandlePlayerBar()
     {
-        // Read input from the new input system (0 = not held, 1 = held)
         float input = playerControls.PlayerActions.Reel.ReadValue<float>();
 
         if (input > 0.5f)
-        {
-            barVelocity = pushSpeed * Time.deltaTime; // Move right
-        }
+            barVelocity = pushSpeed * Time.deltaTime;
         else
-        {
-            barVelocity = -driftSpeed * Time.deltaTime; // Drift left
-        }
+            barVelocity = -driftSpeed * Time.deltaTime;
 
         Vector2 pos = catchBar.anchoredPosition;
         pos.x += barVelocity;
@@ -107,8 +120,36 @@ public class FishingMechanics : MonoBehaviour
         progressBar.value = Mathf.Clamp01(progressBar.value);
 
         if (progressBar.value >= 1f)
+        {
             Debug.Log("Fish Caught!");
-        else if (progressBar.value <= 0f)
+            throwInput.ReturnBait();
+            ResetFishing();
+
+            gameObject.SetActive(false);
+        }
+        else if (progressBar.value <= 0f && initialTimerStart <= 0f)
+        {
             Debug.Log("Fish Escaped!");
+            throwInput.ReturnBait();
+            ResetFishing();
+
+            gameObject.SetActive(false);
+        }
+    }
+
+    private void ResetFishing()
+    {
+        // Reset bar and fish positions
+        fishingTimer.ResetBite();
+        catchBar.anchoredPosition = catchBarInitialPos;
+        fishMarker.anchoredPosition = fishMarkerInitialPos;
+
+        // Reset progress and timer
+        progressBar.value = 0f;
+        initialTimerStart = initialTimer;
+        fishTimer = fishChangeInterval;
+
+        // Reset fish direction
+        fishDirection = Random.value > 0.5f ? 1f : -1f;
     }
 }

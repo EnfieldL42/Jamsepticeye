@@ -241,6 +241,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cast"",
+                    ""type"": ""Button"",
+                    ""id"": ""9ef0bdca-4679-47ab-ae7e-bd7cccaae88f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -287,6 +296,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""DialogueSkip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ebc93b39-fbb8-4ff1-b951-19780768c064"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cast"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -303,6 +323,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_GamePause = m_PlayerActions.FindAction("GamePause", throwIfNotFound: true);
         m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
         m_PlayerActions_DialogueSkip = m_PlayerActions.FindAction("DialogueSkip", throwIfNotFound: true);
+        m_PlayerActions_Cast = m_PlayerActions.FindAction("Cast", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -495,6 +516,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_GamePause;
     private readonly InputAction m_PlayerActions_Interact;
     private readonly InputAction m_PlayerActions_DialogueSkip;
+    private readonly InputAction m_PlayerActions_Cast;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player Actions".
     /// </summary>
@@ -522,6 +544,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "PlayerActions/DialogueSkip".
         /// </summary>
         public InputAction @DialogueSkip => m_Wrapper.m_PlayerActions_DialogueSkip;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerActions/Cast".
+        /// </summary>
+        public InputAction @Cast => m_Wrapper.m_PlayerActions_Cast;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -560,6 +586,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @DialogueSkip.started += instance.OnDialogueSkip;
             @DialogueSkip.performed += instance.OnDialogueSkip;
             @DialogueSkip.canceled += instance.OnDialogueSkip;
+            @Cast.started += instance.OnCast;
+            @Cast.performed += instance.OnCast;
+            @Cast.canceled += instance.OnCast;
         }
 
         /// <summary>
@@ -583,6 +612,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @DialogueSkip.started -= instance.OnDialogueSkip;
             @DialogueSkip.performed -= instance.OnDialogueSkip;
             @DialogueSkip.canceled -= instance.OnDialogueSkip;
+            @Cast.started -= instance.OnCast;
+            @Cast.performed -= instance.OnCast;
+            @Cast.canceled -= instance.OnCast;
         }
 
         /// <summary>
@@ -673,5 +705,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDialogueSkip(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Cast" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCast(InputAction.CallbackContext context);
     }
 }
