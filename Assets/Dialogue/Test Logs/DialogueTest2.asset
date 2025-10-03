@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e01b4e31da972f8489f98cc209a129f6, type: 3}
+  m_Name: DialogueTest2
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueOptionsObject
+  SpeakerName: '{NPC_Name}'
+  DialogueText: "Next dialogue started, look, the name updated at the top right <rot>
+    very cool </rot> I'm writing this at 2:30am btw because of a stupid bug that
+    I had to fix \n\nAnyway here's some dialogue options"
+  ClosesDialogue: 0
+  DialogueOptions:
+  - OptionText: Option 1
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000, guid: 2da74ccd7094482478d8c65d4f668b30, type: 2}
+  - OptionText: i can pick the text i want
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000, guid: b0958a6f0e54aa444984627afccd6049, type: 2}
+  - OptionText: this closes the dialogue
+    ClosesDialogue: 1
+    ProceedingDialogue: {fileID: 0}
+  - OptionText: this doesn't close the dialogue
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000, guid: 2bb83700d13002143a7f715025c7d9c7, type: 2}

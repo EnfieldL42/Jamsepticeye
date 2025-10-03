@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e01b4e31da972f8489f98cc209a129f6, type: 3}
+  m_Name: Question 2
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueOptionsObject
+  SpeakerName: The Executioner
+  DialogueText: That my name was never truly mine. From birth, I was bound to this
+    duty, shunned by society for deeds that must be done by someone
+  ClosesDialogue: 0
+  DialogueOptions:
+  - OptionText: "What\u2019s your sin? "
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000, guid: 9469412cb3b3f0f4bb0613c4a80664f3, type: 2}
+  - OptionText: 'What do you regret? '
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000}
+  - OptionText: 'What stopped you? '
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000, guid: da790eea5ef70294ea95e01976f86658, type: 2}
+  - OptionText: Exit
+    ClosesDialogue: 1
+    ProceedingDialogue: {fileID: 0}

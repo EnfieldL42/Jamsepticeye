@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e01b4e31da972f8489f98cc209a129f6, type: 3}
+  m_Name: Starting Dialogue
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueOptionsObject
+  SpeakerName: The Thief
+  DialogueText: ...
+  ClosesDialogue: 0
+  DialogueOptions:
+  - OptionText: "What\u2019s your sin? "
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000, guid: 2a1472f216e21f74e9a2fb2b62af66f3, type: 2}
+  - OptionText: 'What do you regret? '
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000, guid: aa9a6b86b3865e84f9dfe3ea6ddabfeb, type: 2}
+  - OptionText: 'What stopped you? '
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000, guid: ae104a1324066ab40b9a3cedba604a9a, type: 2}
+  - OptionText: Exit
+    ClosesDialogue: 1
+    ProceedingDialogue: {fileID: 0}

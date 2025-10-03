@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e01b4e31da972f8489f98cc209a129f6, type: 3}
+  m_Name: Question 1
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueOptionsObject
+  SpeakerName: The Drug Lord
+  DialogueText: "Humph\u2026 how many sins a man like me got, huh? Too many to count,
+    capisce?"
+  ClosesDialogue: 0
+  DialogueOptions:
+  - OptionText: "What\u2019s your sin? "
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000}
+  - OptionText: 'What do you regret? '
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000, guid: a17918542f66ba34ba5eb642d715e02b, type: 2}
+  - OptionText: 'What stopped you? '
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000, guid: 0de1af1fe40a4344d813982e3fc5b187, type: 2}
+  - OptionText: Exit
+    ClosesDialogue: 1
+    ProceedingDialogue: {fileID: 0}

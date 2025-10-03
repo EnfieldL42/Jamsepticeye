@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e01b4e31da972f8489f98cc209a129f6, type: 3}
+  m_Name: Question 3
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueOptionsObject
+  SpeakerName: The Warlord
+  DialogueText: Death in battle is the way of warriors. Through it, our glory passes
+    to the next generation.
+  ClosesDialogue: 0
+  DialogueOptions:
+  - OptionText: "What\u2019s your sin? "
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000, guid: 13583d4f1fa3639418ad0c97afe11d77, type: 2}
+  - OptionText: 'What do you regret? '
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000, guid: f44ac0a9d47614c4d91b156ce2d0b8a9, type: 2}
+  - OptionText: 'What stopped you? '
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000}
+  - OptionText: Exit
+    ClosesDialogue: 1
+    ProceedingDialogue: {fileID: 0}

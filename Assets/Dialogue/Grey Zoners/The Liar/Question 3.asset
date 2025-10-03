@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e01b4e31da972f8489f98cc209a129f6, type: 3}
+  m_Name: Question 3
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueOptionsObject
+  SpeakerName: The Liar
+  DialogueText: "I had plans, big ones, but my\u2026 associates kept distracting
+    me. Couldn\u2019t get anything done."
+  ClosesDialogue: 0
+  DialogueOptions:
+  - OptionText: "What\u2019s your sin? "
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000, guid: 3048d86446c58f44fa430ee65f5f1b46, type: 2}
+  - OptionText: 'What do you regret? '
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000, guid: 78d3e97d97c3aaf4f9959a3e70d316ad, type: 2}
+  - OptionText: 'What stopped you? '
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000}
+  - OptionText: Exit
+    ClosesDialogue: 1
+    ProceedingDialogue: {fileID: 0}
