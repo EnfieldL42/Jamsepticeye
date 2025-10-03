@@ -1,11 +1,12 @@
-using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.Build;
 using UnityEditor.Callbacks;
-using System;
 using UnityEditor.PackageManager;
 using UnityEditor.PackageManager.Requests;
+using UnityEngine;
 
 namespace Pinwheel.Jupiter
 {
@@ -64,8 +65,9 @@ namespace Pinwheel.Jupiter
         {
             BuildTarget buildTarget = EditorUserBuildSettings.activeBuildTarget;
             BuildTargetGroup buildGroup = BuildPipeline.GetBuildTargetGroup(buildTarget);
+            NamedBuildTarget namedTarget = NamedBuildTarget.FromBuildTargetGroup(buildGroup);
 
-            string symbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildGroup);
+            string symbols = PlayerSettings.GetScriptingDefineSymbols(namedTarget);
             List<string> symbolList = new List<string>(symbols.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries));
 
             bool isDirty = false;
@@ -78,9 +80,9 @@ namespace Pinwheel.Jupiter
             if (isDirty)
             {
                 symbols = symbolList.ListElementsToString(";");
-                PlayerSettings.SetScriptingDefineSymbolsForGroup(buildGroup, symbols);
+                PlayerSettings.SetScriptingDefineSymbols(namedTarget, symbols);
             }
-            
+
             if (Completed != null)
             {
                 Completed.Invoke();

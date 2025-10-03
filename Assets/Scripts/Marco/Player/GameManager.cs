@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (!Initialized) return;
-        UIManager.Instance.FPSText.SetText("FPS {0:0}", 1 / Time.deltaTime);
+        UIManager.Instance.FPSText.SetText("FPS {0:0}", 1 / Time.unscaledDeltaTime);
 
         if (!UpdatingGameTime) return;
 
