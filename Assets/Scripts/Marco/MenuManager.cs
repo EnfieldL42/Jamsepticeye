@@ -52,6 +52,7 @@ public class MenuManager : MonoBehaviour
 
         MasterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
         AudioListener.volume = MasterVolume;
+        StartingCameraRotation = MenuCamera.transform.rotation;
 
         MasterVolumeSlider.value = MasterVolume;
         MasterVolumePercentage.SetText("{0}%", Mathf.Round(MasterVolumeSlider.value * 100f));
@@ -78,18 +79,12 @@ public class MenuManager : MonoBehaviour
         if (!ButtonsEnabled) return;
         ButtonsEnabled = false;
 
-        Animator.SetTrigger("ToggleSettings");
-        print("Opening settings");
+        Animator.SetBool("OpenSettings", true);
     }
 
-    public void SettingsOpened()
+    public void SettingsToggled()
     {
-
-    }
-
-    public void SettingsClosed()
-    {
-
+        ButtonsEnabled = true;
     }
 
     public void ChangeMasterVolume()
@@ -111,6 +106,14 @@ public class MenuManager : MonoBehaviour
         AudioListener.volume = MasterVolumeSlider.value;
         PlayerPrefs.SetFloat("MasterVolume", MasterVolumeSlider.value);
         PlayerPrefs.Save();
+    }
+
+    public void CloseSettings()
+    {
+        if (!ButtonsEnabled) return;
+        ButtonsEnabled = false;
+
+        Animator.SetBool("OpenSettings", false);
     }
 
     public void Close()
