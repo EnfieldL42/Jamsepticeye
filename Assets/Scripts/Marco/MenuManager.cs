@@ -22,7 +22,7 @@ public class MenuManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        StartingCameraRotation = transform.rotation;
+        StartingCameraRotation = MenuCamera.transform.rotation;
     }
 
     private void Update()
