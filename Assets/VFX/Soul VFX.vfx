@@ -153,15 +153,6 @@ MonoBehaviour:
     - model: {fileID: 8926484042661614940}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661615241}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 0}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614986}
-      id: 0
-      isStickyNote: 0
     - model: {fileID: 8926484042661614694}
       id: 1
       isStickyNote: 0
@@ -197,31 +188,7 @@ MonoBehaviour:
     - model: {fileID: 8926484042661614587}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661614672}
-      id: 0
-      isStickyNote: 0
     - model: {fileID: 8926484042661614665}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614675}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614683}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614688}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614677}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614700}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614680}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614576}
       id: 0
       isStickyNote: 0
     - model: {fileID: 8926484042661615510}
@@ -262,7 +229,7 @@ MonoBehaviour:
     x: 848
     y: 112
     width: 3036
-    height: 1870
+    height: 1846
 --- !u!114 &8926484042661614546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7130,7 +7097,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 1
+      m_SerializableObject: 5
     m_Space: -1
   m_Property:
     name: Rate
@@ -7748,7 +7715,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 3435, y: 815}
+  m_UIPosition: {x: 3435, y: 834}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -8047,7 +8014,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615598}
   - {fileID: 8926484042661615605}
   - {fileID: 8926484042661615595}
-  m_UIPosition: {x: 3435, y: 965}
+  m_UIPosition: {x: 3435, y: 984}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:

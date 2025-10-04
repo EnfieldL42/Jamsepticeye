@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6413182328537184402}
   - component: {fileID: 5413485976044683340}
   - component: {fileID: 8442541515170423685}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Soul VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}

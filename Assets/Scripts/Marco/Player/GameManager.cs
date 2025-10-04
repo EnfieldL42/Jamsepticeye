@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +17,15 @@ public class GameManager : MonoBehaviour
 
     private float StartSpeed = 0f;
     private bool Initialized = false;
+
+    [Header("Souls Prefabs")]
+    public List<GameObject> SoulPrefabs = new List<GameObject>();
+    private GameObject lastSpawnedSoul;
+    private int soulIndex = 0;
+    public bool playerHasSoul = false;
+
+    [SerializeField] int SoulsDamned = 0;
+    [SerializeField] int SoulsFreed = 0;
 
     private void Awake()
     {
@@ -104,4 +114,56 @@ public class GameManager : MonoBehaviour
             UpdatingGameTime = false;
         }
     }
+
+
+    //SOUL INSTANTIATING
+
+    public GameObject SpawnNextSoulPrefab(Transform parent)
+    {
+        if (SoulPrefabs.Count == 0) return null;
+
+        GameObject prefabToSpawn = SoulPrefabs[soulIndex];
+
+        lastSpawnedSoul = Instantiate(prefabToSpawn, parent.position, parent.rotation, parent);
+
+        soulIndex = (soulIndex + 1) % SoulPrefabs.Count;
+
+        return lastSpawnedSoul;
+    }
+
+    public void DestroyLastSoul()
+    {
+        if (lastSpawnedSoul != null)
+        {
+            Destroy(lastSpawnedSoul);
+            lastSpawnedSoul = null;
+        }
+    }
+
+    public void CondemnSoul()
+    {
+        playerHasSoul = false;
+        SoulsDamned += 1;
+        DestroyLastSoul();
+    }
+
+    public void FreeSoul()
+    {
+        playerHasSoul = false;
+        SoulsFreed += 1;
+        DestroyLastSoul();
+    }
+
+
+    public void OpenFishindRodCollider()
+    {
+        
+    }
+
+
+    public void InitializeDeathDialogue()
+    {
+
+    }
+
 }

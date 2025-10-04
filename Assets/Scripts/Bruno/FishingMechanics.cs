@@ -25,8 +25,8 @@ public class FishingMechanics : MonoBehaviour
     
 
     private PlayerControls playerControls;
-    [SerializeField] BaitThrowInput throwInput;
-    [SerializeField] BaitFishingTimer fishingTimer;
+    [SerializeField] RodManager rodManager;
+    [SerializeField] BaitManager baitManager;
 
     // Store initial positions
     private Vector2 catchBarInitialPos;
@@ -64,6 +64,11 @@ public class FishingMechanics : MonoBehaviour
         HandleFishMovement();
         HandleProgress();
         InitialTimer();
+
+        if(gameObject.activeSelf == true)
+        {
+            rodManager.canCast = false;
+        }
     }
 
     void InitialTimer()
@@ -121,16 +126,18 @@ public class FishingMechanics : MonoBehaviour
 
         if (progressBar.value >= 1f)
         {
-            Debug.Log("Fish Caught!");
-            throwInput.ReturnBait();
+            Debug.Log("Fish Caught");
+            baitManager.InstantiateSoulAtBait();
+            GameManager.Instance.playerHasSoul = true;
+            rodManager.ReturnBait();
             ResetFishing();
 
             gameObject.SetActive(false);
         }
         else if (progressBar.value <= 0f && initialTimerStart <= 0f)
         {
-            Debug.Log("Fish Escaped!");
-            throwInput.ReturnBait();
+            Debug.Log("Fish Escaped");
+            rodManager.ReturnBait();
             ResetFishing();
 
             gameObject.SetActive(false);
@@ -140,7 +147,7 @@ public class FishingMechanics : MonoBehaviour
     private void ResetFishing()
     {
         // Reset bar and fish positions
-        fishingTimer.ResetBite();
+        baitManager.ResetBite();
         catchBar.anchoredPosition = catchBarInitialPos;
         fishMarker.anchoredPosition = fishMarkerInitialPos;
 
