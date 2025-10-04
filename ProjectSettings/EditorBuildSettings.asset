@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Mechanics Scene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Lilith's creek.unity
+    guid: eaa386a774222f24aaa142841bd73576
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: d75769554a34baf41829b13704e229c1, type: 3}
   m_UseUCBPForAssetBundles: 0

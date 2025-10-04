@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using System.Collections;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
@@ -29,6 +31,13 @@ public class MenuManager : MonoBehaviour
     [Space, Header("Settings UI Elements")]
     [SerializeField] private TextMeshProUGUI MasterVolumePercentage;
     [SerializeField] private Slider MasterVolumeSlider;
+
+    private IEnumerator TeleportToNewScene()
+    {
+        yield return new WaitForSeconds(5f);
+
+        SceneManager.LoadSceneAsync(1);
+    }
 
     private void Awake()
     {
@@ -72,6 +81,10 @@ public class MenuManager : MonoBehaviour
         if (!ButtonsEnabled) return;
         ButtonsEnabled = false;
 
+        print(LoadingScreenManager.Instance == null);
+
+        LoadingScreenManager.Instance.StartLoading();
+        StartCoroutine(TeleportToNewScene());
     }
 
     public void OpenSettings()

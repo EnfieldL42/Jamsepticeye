@@ -2,15 +2,37 @@ using UnityEngine;
 
 public class LoadingScreenManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static LoadingScreenManager Instance;
+    private Animator Animator;
+    [HideInInspector] public bool InLoadingScreen = false;
+    private void Awake()
     {
-        
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        Animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StartLoading()
     {
-        
+        if (InLoadingScreen) return;
+
+        Animator.Play("LoadingStart");
+        InLoadingScreen = true;
+    }
+
+    public void StopLoading()
+    {
+        if (!InLoadingScreen) return;
+
+        Animator.Play("LoadingEnd");
+        InLoadingScreen = false;
     }
 }
