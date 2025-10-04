@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        AudioListener.volume = PlayerPrefs.GetFloat("MasterVolme", 1f);
     }
 
     public void SetCurstorState(CursorLockMode LockMode = default, bool Visible = default)

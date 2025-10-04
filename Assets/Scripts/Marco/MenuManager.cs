@@ -3,6 +3,7 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -16,11 +17,18 @@ public class MenuManager : MonoBehaviour
 
     private Quaternion StartingCameraRotation;
     private Animator Animator;
-    private bool ButtonsEnabled = true;
 
-    [Header("UI Elements")]
+    private bool ButtonsEnabled = true;
+    private float MasterVolume;
+    private bool ChangingMasterVolume = false;
+
+    [Header("Main UI Elements")]
     [SerializeField] private TextMeshProUGUI TitleText;
     [SerializeField] private List<TextMeshProUGUI> MenuButtonTexts;
+
+    [Space, Header("Settings UI Elements")]
+    [SerializeField] private TextMeshProUGUI MasterVolumePercentage;
+    [SerializeField] private Slider MasterVolumeSlider;
 
     private void Awake()
     {
@@ -41,6 +49,12 @@ public class MenuManager : MonoBehaviour
             string InitialText = TitleText.text;
             TitleText.SetText($"<pend>{InitialText}</pend>");
         }
+
+        MasterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
+        AudioListener.volume = MasterVolume;
+
+        MasterVolumeSlider.value = MasterVolume;
+        MasterVolumePercentage.SetText("{0}%", Mathf.Round(MasterVolumeSlider.value * 100f));
     }
 
     private void Update()
@@ -76,6 +90,27 @@ public class MenuManager : MonoBehaviour
     public void SettingsClosed()
     {
 
+    }
+
+    public void ChangeMasterVolume()
+    {
+        MasterVolumePercentage.SetText("{0}%", Mathf.Round(MasterVolumeSlider.value * 100f));
+        AudioListener.volume = MasterVolumeSlider.value;
+
+        if (!ChangingMasterVolume)
+        {
+            ChangingMasterVolume = true;
+        }
+    }
+
+    public void SubmitMasterVolume()
+    {
+        if (!ChangingMasterVolume) return;
+        ChangingMasterVolume = false;
+
+        AudioListener.volume = MasterVolumeSlider.value;
+        PlayerPrefs.SetFloat("MasterVolume", MasterVolumeSlider.value);
+        PlayerPrefs.Save();
     }
 
     public void Close()
