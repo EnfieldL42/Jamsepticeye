@@ -44,29 +44,12 @@ public class UIManager : MonoBehaviour
         }
 
         CanvasAnimator = GetComponent<Animator>();
-        //StartCoroutine(WaitForControls());
-    }
-
-    private IEnumerator WaitForControls()
-    {
-        while (PlayerInputManager.playerInputManager == null || !PlayerInputManager.playerInputManager.ControlsEnabled)
-        {
-            yield return null;
-        }
-
-        Controls = PlayerInputManager.playerInputManager.playerControls;
-        Controls.Enable();
-
-        Controls.PlayerActions.DialogueSkip.performed += ProceedDialogue;
     }
 
     private void Start()
     {
         Controls = PlayerInputManager.playerInputManager.playerControls;
-        //Controls.Enable();
-
         Controls.PlayerActions.DialogueSkip.started += ProceedDialogue;
-        //StartDialogue(test);
     }
 
     private void OnDisable()
