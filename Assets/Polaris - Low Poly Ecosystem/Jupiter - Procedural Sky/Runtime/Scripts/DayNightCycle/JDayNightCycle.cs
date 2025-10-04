@@ -269,13 +269,13 @@ namespace Pinwheel.Jupiter
         {
             time = StartTime;
             Camera.onPreCull += OnCameraPreCull;
-            RenderPipelineManager.beginFrameRendering += OnBeginFrameRenderingSRP;
+            RenderPipelineManager.beginContextRendering += OnBeginFrameRenderingSRP;
         }
 
         private void OnDisable()
         {
             Camera.onPreCull -= OnCameraPreCull;
-            RenderPipelineManager.beginFrameRendering -= OnBeginFrameRenderingSRP;
+            RenderPipelineManager.beginContextRendering -= OnBeginFrameRenderingSRP;
             CleanUp();
         }
 
@@ -285,7 +285,7 @@ namespace Pinwheel.Jupiter
                 Update();
         }
 
-        private void OnBeginFrameRenderingSRP(ScriptableRenderContext context, Camera[] cameras)
+        private void OnBeginFrameRenderingSRP(ScriptableRenderContext context, List<Camera> cameras)
         {
             if (!Application.isPlaying)
                 Update();
@@ -376,7 +376,7 @@ namespace Pinwheel.Jupiter
                 else if (EnvironmentProbe.texture != null || EnvironmentProbe.IsFinishedRendering(probeRenderId))
                 {
                     Graphics.CopyTexture(EnvironmentProbe.texture, EnvironmentReflection as Texture);
-                    RenderSettings.customReflection = EnvironmentReflection;
+                    RenderSettings.customReflectionTexture = EnvironmentReflection;
                     RenderSettings.defaultReflectionMode = DefaultReflectionMode.Custom;
                     probeRenderId = EnvironmentProbe.RenderProbe();
                 }
