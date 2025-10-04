@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9044104971545560985}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Instantiation Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 2864809301754754562}
   - component: {fileID: 686725310876635138}
   - component: {fileID: 4218075696477556579}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -661,7 +661,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5608231749687097571}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Rod Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -727,7 +727,7 @@ GameObject:
   - component: {fileID: 8714203976120320820}
   - component: {fileID: 104973485033456019}
   - component: {fileID: 1638374381064369745}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1055,7 +1055,7 @@ GameObject:
   - component: {fileID: 5685401288780910129}
   - component: {fileID: 7566730241927117563}
   - component: {fileID: 7507549379863308704}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Fishing Rod
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -65,9 +65,11 @@ public class PlayerMovement : MonoBehaviour
         Grounded = Physics.CheckSphere(
             Floor.position + GroundCheckOffset,
             GroundCheckDistance,
-            PlayerMaskID,
+            ~PlayerMaskID,
             QueryTriggerInteraction.Ignore
         );
+
+        print(Grounded);
 
         Debug.DrawRay(origin, downDirection * GroundCheckDistance,Grounded ? Color.green : Color.red);
     }
