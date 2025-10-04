@@ -15,3 +15,4 @@ MonoBehaviour:
   Name: Brotholomew
   HoldTime: 0
   Description: talk to Demetrius Demarcus Bartholomew James The Third.
+  Function: {fileID: 11400000, guid: e4649a0dabe8dcd48a96cf13b13f22ce, type: 2}

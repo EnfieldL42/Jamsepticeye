@@ -6,7 +6,7 @@ public class ReaperManager : MonoBehaviour
 {
     public static ReaperManager Instance;
 
-    [SerializeField] InteractTest interactTest;
+    [SerializeField] DialogueInteract dialogueInteract;
     Collider col;
 
     [SerializeField] Material material;
@@ -34,7 +34,7 @@ public class ReaperManager : MonoBehaviour
         ChangeLanternColor(lanternNormalColor);
 
         col = GetComponent<Collider>();
-        interactTest = GetComponent<InteractTest>();
+        dialogueInteract = GetComponent<DialogueInteract>();
         audioSource = GetComponent<AudioSource>();
 
         if (Instance == null)
@@ -70,7 +70,7 @@ public class ReaperManager : MonoBehaviour
     public void GoNextDialogue()
     {
         dialogueID++;
-        interactTest.StartingDialogue = startingDialoguesByID[dialogueID];
+        dialogueInteract.StartingDialogue = startingDialoguesByID[dialogueID];
     }
 
 
@@ -78,12 +78,12 @@ public class ReaperManager : MonoBehaviour
     {
         if (endingID == 1)
         {
-            interactTest.StartingDialogue = endingDialogues[0];
+            dialogueInteract.StartingDialogue = endingDialogues[0];
             //play ending sequence
         }
         else if (endingID == 2)
         {
-            interactTest.StartingDialogue = endingDialogues[1];
+            dialogueInteract.StartingDialogue = endingDialogues[1];
             //play ending sequence
         }
     }

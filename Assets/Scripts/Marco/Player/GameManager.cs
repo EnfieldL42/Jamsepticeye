@@ -48,29 +48,18 @@ public class GameManager : MonoBehaviour
         Cursor.visible = Visible;
     }
 
-    /*
-    private IEnumerator WaitForControls()
-    {
-        while (PlayerInputManager.playerInputManager == null || !PlayerInputManager.playerInputManager.ControlsEnabled)
-        {
-            yield return null;
-        }
-
-        Controls = PlayerInputManager.playerInputManager.playerControls;
-        Controls.Enable();
-
-        Controls.PlayerActions.GamePause.started += ToggleEscapeMenu;
-        Initialized = true;
-    }*/
-
     private void Start()
     {
-        //StartCoroutine(WaitForControls());
         Controls = PlayerInputManager.playerInputManager.playerControls;
         Controls.Enable();
 
         Controls.PlayerActions.GamePause.started += ToggleEscapeMenu;
         Initialized = true;
+
+        if (LoadingScreenManager.Instance != null && LoadingScreenManager.Instance.InLoadingScreen)
+        {
+            LoadingScreenManager.Instance.StopLoading();
+        }
     }
 
     private void OnDisable()
