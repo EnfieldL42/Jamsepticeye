@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a7be44d829a4df64e866d00cfcfd51aa
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 202484
+  packageName: Amplify Shader Pack
+  packageVersion: 2.3.7
+  assetPath: Assets/AmplifyShaderPack/Assets/Prefabs/BIRP/Samples/Wireframe Alpha
+    Blend.prefab
+  uploadId: 782881

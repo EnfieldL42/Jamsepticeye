@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b2425a2284af743826c689403a4924, type: 3}
+  m_Name: GSF Duer
+  m_EditorClassIdentifier: 
+  m_functionInfo: "// Made with Amplify Shader Editor v1.9.9.3\n// Available at the
+    Unity Asset Store - http://u3d.as/y3X \n/*ASEBEGIN\nVersion=19903\nNode;AmplifyShaderEditor.CommentaryNode,
+    AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;420;-1168,2432;Inherit;False;404.9814;282.1353;Original
+    Formula;2;419;418;;0,0,0,1;0;0\nNode;AmplifyShaderEditor.CommentaryNode, AmplifyShaderEditor,
+    Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;338;-1179.032,1984;Inherit;False;141.0317;136.0922;NdotH;1;423;;0,0,0,1;0;0\nNode;AmplifyShaderEditor.CommentaryNode,
+    AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;261;-992,1984;Inherit;False;223.9009;257.2463;Power
+    of 4;1;259;;0,0,0,1;0;0\nNode;AmplifyShaderEditor.CommentaryNode, AmplifyShaderEditor,
+    Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;339;-955.8366,2256;Inherit;False;154.4322;131.6772;HdotH;1;424;;0,0,0,1;0;0\nNode;AmplifyShaderEditor.CommentaryNode,
+    AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;432;-560,2256;Inherit;False;180.7445;273.0844;Out;1;433;;0.0235849,0.0235849,0.0235849,1;0;0\nNode;AmplifyShaderEditor.SimpleMultiplyOpNode,
+    AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;259;-976,2032;Inherit;True;4;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.PowerNode,
+    AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;418;-992,2480;Inherit;True;True;2;0;FLOAT;0;False;1;FLOAT;-4;False;1;FLOAT;0\nNode;AmplifyShaderEditor.RangedFloatNode,
+    AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;419;-1152,2496;Inherit;False;Constant;_Pow4;Pow
+    4;0;0;Create;True;0;0;0;False;0;False;4;0;0;0;0;1;FLOAT;0\nNode;AmplifyShaderEditor.WireNode,
+    AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;416;-752,2096;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.WireNode,
+    AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;417;-752,2304;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.SimpleMultiplyOpNode,
+    AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;87;-704,2304;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.RelayNode,
+    AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;423;-1152,2032;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.RelayNode,
+    AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;424;-928,2304;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.StickyNoteNode,
+    AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;429;-1024,1792;Inherit;False;516.9622;132.9929;Credits;;0,0,0,0.5019608;Method
+    by Jordan Stevens$Link: https://www.jordanstevenstechart.com/physically-based-rendering$$Node
+    Made by Tiber Legacy;0;0\nNode;AmplifyShaderEditor.StickyNoteNode, AmplifyShaderEditor,
+    Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;430;-704,1984;Inherit;False;214.3707;103.1267;;;0,0,0,1;Hard
+    coding Power with multiple can be a lot cheaper than use of power node;0;0\nNode;AmplifyShaderEditor.StickyNoteNode,
+    AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;431;-560,2112;Inherit;False;290.4725;128.6719;;;0,0,0,1;The
+    Duer GSF produces similar results as the Ashikhmin-Shirley, but is more suited
+    towards Isotropic BRDFs, or very slightly Anisotropic BRDF ;0;0\nNode;AmplifyShaderEditor.RelayNode,
+    AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;433;-544,2304;Inherit;True;1;0;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.FunctionSwitch,
+    AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;347;-1472,2304;Inherit;False;Option;False;0;2;1;In
+    0;In 1;Instance;325;20;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;4;FLOAT;0;False;5;FLOAT;0;False;6;FLOAT;0;False;7;FLOAT;0;False;8;FLOAT;0;False;9;FLOAT;0;False;10;FLOAT;0;False;11;FLOAT;0;False;12;FLOAT;0;False;13;FLOAT;0;False;14;FLOAT;0;False;15;FLOAT;0;False;16;FLOAT;0;False;17;FLOAT;0;False;18;FLOAT;0;False;19;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.FunctionSwitch,
+    AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;325;-1472,2032;Inherit;False;Custom
+    Dot Products;True;0;2;1;In 0;In 1;Object;-1;20;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;4;FLOAT;0;False;5;FLOAT;0;False;6;FLOAT;0;False;7;FLOAT;0;False;8;FLOAT;0;False;9;FLOAT;0;False;10;FLOAT;0;False;11;FLOAT;0;False;12;FLOAT;0;False;13;FLOAT;0;False;14;FLOAT;0;False;15;FLOAT;0;False;16;FLOAT;0;False;17;FLOAT;0;False;18;FLOAT;0;False;19;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.FunctionInput,
+    AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;320;-1632,2112;Inherit;False;NdotH;1;0;False;1;0;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.FunctionNode,
+    AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;434;-1888,2032;Inherit;False;Common
+    Dot Products;-1;;16;5d6a9ad28a8f74b48b6d165af10ad68b;5,1302,7,1301,7,1036,0,586,1,850,0;10;833;FLOAT3;0,0,0;False;834;FLOAT3;0,0,0;False;1052;FLOAT3;0,0,0;False;1034;FLOAT3;0,0,1;False;846;FLOAT3;0,0,0;False;851;FLOAT3;0,0,0;False;884;FLOAT3;0,0,0;False;918;FLOAT3;0,0,0;False;854;FLOAT3;0,0,0;False;590;FLOAT;1E-37;False;1;FLOAT;108\nNode;AmplifyShaderEditor.FunctionInput,
+    AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;346;-1632,2384;Inherit;False;HdotH;1;1;False;1;0;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.FunctionNode,
+    AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;435;-1888,2304;Inherit;False;Common
+    Dot Products;-1;;17;5d6a9ad28a8f74b48b6d165af10ad68b;5,1302,1,1301,1,1036,0,586,1,850,0;10;833;FLOAT3;0,0,0;False;834;FLOAT3;0,0,0;False;1052;FLOAT3;0,0,0;False;1034;FLOAT3;0,0,1;False;846;FLOAT3;0,0,0;False;851;FLOAT3;0,0,0;False;884;FLOAT3;0,0,0;False;918;FLOAT3;0,0,0;False;854;FLOAT3;0,0,0;False;590;FLOAT;1E-37;False;1;FLOAT;108\nNode;AmplifyShaderEditor.FunctionOutput,
+    AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;217;-352,2304;Inherit;False;True;-1;Out;0;True;1;0;FLOAT;0;False;1;FLOAT;0\nWireConnection;259;0;423;0\nWireConnection;259;1;423;0\nWireConnection;259;2;423;0\nWireConnection;259;3;423;0\nWireConnection;418;0;423;0\nWireConnection;418;1;419;0\nWireConnection;416;0;259;0\nWireConnection;417;0;416;0\nWireConnection;87;0;424;0\nWireConnection;87;1;417;0\nWireConnection;423;0;325;0\nWireConnection;424;0;347;0\nWireConnection;433;0;87;0\nWireConnection;347;0;435;108\nWireConnection;347;1;346;0\nWireConnection;325;0;434;108\nWireConnection;325;1;320;0\nWireConnection;217;0;433;0\nASEEND*/\n//CHKSM=EF3125EB8F0ACBED4B274915CCDDCC783AFAC9B0"
+  m_functionName: 
+  m_description: 'GSF Duer
+
+'
+  m_additionalIncludes:
+    m_additionalIncludes: []
+    m_outsideIncludes: []
+  m_additionalPragmas:
+    m_additionalPragmas: []
+    m_outsidePragmas: []
+  m_additionalDirectives:
+    m_validData: 0
+    m_isDirty: 0
+    m_moduleName: ' Additional Directives'
+    m_independentModule: 1
+    m_customEdited: 0
+    m_additionalDirectives: []
+    m_shaderFunctionDirectives: []
+    m_nativeDirectives: []
+    m_nativeDirectivesIndex: -1
+    m_nativeDirectivesFoldout: 0
+    m_directivesSaveItems: []
+  m_nodeCategory: 0
+  m_headerStyle: 2
+  m_headerColor: {r: 0.7529412, g: 0.6784314, b: 0, a: 1}
+  m_customNodeCategory: Amplify Shader Pack
+  m_previewPosition: 0
+  m_hidden: 0
+  m_url: 

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 5d6a9ad28a8f74b48b6d165af10ad68b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 202484
+  packageName: Amplify Shader Pack
+  packageVersion: 2.3.7
+  assetPath: Assets/AmplifyShaderPack/Assets/Functions/Community Physical Based Rendering/PBR
+    Functions/Common Dot Products.asset
+  uploadId: 782881
