@@ -1,11 +1,11 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Dialogue Functions/Calls test")]
-public class DialogueActionTest : DialogueAction
+[CreateAssetMenu(menuName = "Dialogue Start Functions/Calls test")]
+public class DialogueActionTest : DialogueStartAction
 {
-    public override void OnButtonPressed()
+    public override void OnDialogueStarted()
     {
-        base.OnButtonPressed();
+        base.OnDialogueStarted();
 
         UIManager.Instance.Test();
     }
