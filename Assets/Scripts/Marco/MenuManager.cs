@@ -27,8 +27,8 @@ public class MenuManager : MonoBehaviour
 
     private void Update()
     {
-        float MouseX = (Mouse.current.position.x.value / Screen.width - 0.5f) * 2f;
-        float MouseY = (Mouse.current.position.y.value / Screen.height - 0.5f) * 2f;
+        float MouseX = Mathf.Clamp((Mouse.current.position.x.value / Screen.width - 0.5f) * 2f, -1, 1);
+        float MouseY = Mathf.Clamp((Mouse.current.position.y.value / Screen.height - 0.5f) * 2f, -1, 1);
 
         Quaternion TargetRotation = StartingCameraRotation * Quaternion.Euler(MouseY * CameraRotationStrength, -MouseX * CameraRotationStrength, 0f);
         MenuCamera.transform.rotation = Quaternion.Slerp(MenuCamera.transform.rotation, TargetRotation, Time.deltaTime * CameraSmoothSpeed);

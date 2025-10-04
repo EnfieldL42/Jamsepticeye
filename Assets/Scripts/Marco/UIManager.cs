@@ -168,6 +168,8 @@ public class UIManager : MonoBehaviour
 
                 NewButtton.ProceedingDialogue = DialogueOption.ProceedingDialogue;
                 NewButtton.Button.onClick.AddListener(() => DialogueOptionPressed(NewButtton));
+
+                NewButtton.Option = DialogueOption;
                 ActiveOptions.Add(NewButtton);
             }
         }
@@ -182,6 +184,8 @@ public class UIManager : MonoBehaviour
         }
         else
         {
+            ButtonData.Option.Function?.OnButtonPressed();
+
             CurrentDialogueNode = ButtonData.ProceedingDialogue;
 
             foreach (DialogueButton OptionButton in ActiveOptions)
@@ -252,4 +256,16 @@ public class UIManager : MonoBehaviour
         CurrentDialogueNode = DialogueData;
         SetNextDialogue();
     }
+
+    #region Button Functions
+    public void ButtonFunctionExample()
+    {
+        print("Example called");
+    }
+
+    public void Test()
+    {
+        print("Hello");
+    }
+    #endregion
 }

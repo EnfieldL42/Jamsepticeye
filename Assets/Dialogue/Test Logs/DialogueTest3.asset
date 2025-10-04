@@ -24,15 +24,20 @@ MonoBehaviour:
   - OptionText: I will not use rainbow.
     ClosesDialogue: 0
     ProceedingDialogue: {fileID: 11400000, guid: 3721153e83a3264409716b398c68b8ab, type: 2}
+    Function: {fileID: 5642681735036044580, guid: b9aeb9afd3f8923429cde393e9d18532, type: 3}
   - OptionText: I will not use rainbow.
     ClosesDialogue: 0
     ProceedingDialogue: {fileID: 11400000, guid: 3721153e83a3264409716b398c68b8ab, type: 2}
+    Function: {fileID: 0}
   - OptionText: I will not use rainbow.
     ClosesDialogue: 0
     ProceedingDialogue: {fileID: 11400000, guid: 3721153e83a3264409716b398c68b8ab, type: 2}
+    Function: {fileID: 0}
   - OptionText: I will not use rainbow.
     ClosesDialogue: 0
     ProceedingDialogue: {fileID: 11400000, guid: 3721153e83a3264409716b398c68b8ab, type: 2}
+    Function: {fileID: 0}
   - OptionText: I will use rainbow.
     ClosesDialogue: 0
     ProceedingDialogue: {fileID: 11400000, guid: eed824c11294d2a4d84d7a36ae7b3217, type: 2}
+    Function: {fileID: 0}

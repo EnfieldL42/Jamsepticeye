@@ -21,12 +21,16 @@ MonoBehaviour:
   - OptionText: Option 1
     ClosesDialogue: 0
     ProceedingDialogue: {fileID: 11400000, guid: 2da74ccd7094482478d8c65d4f668b30, type: 2}
+    Function: {fileID: 11400000, guid: 51324cd1e35157f4084011dd648a0581, type: 2}
   - OptionText: i can pick the text i want
     ClosesDialogue: 0
     ProceedingDialogue: {fileID: 11400000, guid: b0958a6f0e54aa444984627afccd6049, type: 2}
+    Function: {fileID: 0}
   - OptionText: this closes the dialogue
     ClosesDialogue: 1
     ProceedingDialogue: {fileID: 0}
+    Function: {fileID: 0}
   - OptionText: this doesn't close the dialogue
     ClosesDialogue: 0
     ProceedingDialogue: {fileID: 11400000, guid: 2bb83700d13002143a7f715025c7d9c7, type: 2}
+    Function: {fileID: 0}

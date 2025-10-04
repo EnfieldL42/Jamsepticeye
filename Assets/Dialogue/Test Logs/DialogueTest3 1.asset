@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e01b4e31da972f8489f98cc209a129f6, type: 3}
+  m_Name: DialogueTest3 1
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueOptionsObject
+  SpeakerName: '{NPC_Name}'
+  DialogueText: 'Most of these won''t be used probably, but just showing you what
+    this can do
+
+
+    Oh yeah also there''s <rainb> rainbow </rainb> text that we
+    will NOT use, ok?'
+  ClosesDialogue: 0
+  DialogueOptions:
+  - OptionText: I will not use rainbow.
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000, guid: 3721153e83a3264409716b398c68b8ab, type: 2}
+    Function: {fileID: 5642681735036044580, guid: b9aeb9afd3f8923429cde393e9d18532, type: 3}
+  - OptionText: I will not use rainbow.
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000, guid: 3721153e83a3264409716b398c68b8ab, type: 2}
+    Function: {fileID: 0}
+  - OptionText: I will not use rainbow.
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000, guid: 3721153e83a3264409716b398c68b8ab, type: 2}
+    Function: {fileID: 0}
+  - OptionText: I will not use rainbow.
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000, guid: 3721153e83a3264409716b398c68b8ab, type: 2}
+    Function: {fileID: 0}
+  - OptionText: I will use rainbow.
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 11400000, guid: eed824c11294d2a4d84d7a36ae7b3217, type: 2}
+    Function: {fileID: 0}
