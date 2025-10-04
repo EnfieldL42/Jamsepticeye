@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb0db3f3231a5e248b092562f93f61ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: TinyGiantStudio.BetterInspector.BetterTransform.Editor::TinyGiantStudio.BetterInspector.BetterTransformSettings
-  currentWorkSpace: 1
+  currentWorkSpace: 0
   showCopyPasteButtons: 1
   fieldRoundingAmount: 5
   roundPositionField: 0
