@@ -37,7 +37,7 @@ MonoBehaviour:
   includeChildBounds: 1
   ignoreParticleAndVFXInSizeCalculation: 0
   currentSizeType: 0
-  lockSizeAspectRatio: 0
+  lockSizeAspectRatio: 1
   maxChildCountForSizeCalculation: 50
   maxChildInspectors: 10
   constantSizeUpdate: 0
