@@ -25,7 +25,7 @@ MonoBehaviour:
   - OptionText: i can pick the text i want
     ClosesDialogue: 0
     ProceedingDialogue: {fileID: 11400000, guid: b0958a6f0e54aa444984627afccd6049, type: 2}
-    Function: {fileID: 0}
+    Function: {fileID: 11400000, guid: e4649a0dabe8dcd48a96cf13b13f22ce, type: 2}
   - OptionText: this closes the dialogue
     ClosesDialogue: 1
     ProceedingDialogue: {fileID: 0}
