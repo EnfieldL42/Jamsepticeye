@@ -131,7 +131,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _ReflectionPower: 0.15
+    - _ReflectionPower: 0.39
     - _RippleScale: 25
     - _RippleSpeed: 2
     - _RippleStrength: 0.005
@@ -151,14 +151,14 @@ Material:
     m_Colors:
     - _BaseColor: {r: 0.13483447, g: 0.2830189, b: 0.21706326, a: 1}
     - _Color: {r: 0.13483444, g: 0.28301886, b: 0.21706322, a: 1}
-    - _CubemapColor: {r: 9.151497, g: 2.7631688, b: 1.6290622, a: 0}
+    - _CubemapColor: {r: 9.151497, g: 2.9952471, b: 1.6290622, a: 0}
     - _DeepWater: {r: 0.08677464, g: 0.09339399, b: 0.09433961, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FarWater: {r: 0.19246174, g: 0.23584908, b: 0.23274998, a: 0}
     - _FoamColor: {r: 0.2823529, g: 0.30196074, b: 0.30980387, a: 0.1764706}
     - _ShallowWater: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _WaveColor: {r: 0.3019788, g: 0.2587432, b: 0.24072836, a: 0}
+    - _WaveColor: {r: 0.16037738, g: 0.13697326, b: 0.12633501, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &839416349386783715

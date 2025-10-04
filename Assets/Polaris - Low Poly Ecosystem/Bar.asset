@@ -72,7 +72,7 @@ Material:
     - _MoonSize: 0.158
     - _MoonSoftEdge: 0.27
     - _OverheadCloudAltitude: 10
-    - _OverheadCloudAnimationSpeed: 44.2
+    - _OverheadCloudAnimationSpeed: 20
     - _OverheadCloudFlowDirectionX: 1
     - _OverheadCloudFlowDirectionZ: 1
     - _OverheadCloudRemapMax: 56
@@ -107,7 +107,7 @@ Material:
     - _MoonColor: {r: 1, g: 1, b: 1, a: 0}
     - _MoonDirection: {r: 0, g: 0, b: 1, a: 0}
     - _MoonLightColor: {r: 1, g: 1, b: 1, a: 0}
-    - _OverheadCloudColor: {r: 0.2830189, g: 0.2611719, b: 0.24430405, a: 0.5019608}
+    - _OverheadCloudColor: {r: 0.16936633, g: 0.20389512, b: 0.20754719, a: 0.25490198}
     - _SkyColor: {r: 0.11372549, g: 0.14765167, b: 0.14901961, a: 1}
     - _StarsColor0: {r: 1, g: 1, b: 1, a: 1}
     - _StarsColor1: {r: 0, g: 0, b: 0, a: 0}
@@ -147,7 +147,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _OverheadCloudAltitude: 10
-    - _OverheadCloudAnimationSpeed: 44.2
+    - _OverheadCloudAnimationSpeed: 20
     - _OverheadCloudFlowDirectionX: 1
     - _OverheadCloudFlowDirectionZ: 1
     - _OverheadCloudRemapMax: 56
@@ -156,7 +156,7 @@ Material:
     - _OverheadCloudSize: 0.1
     - _OverheadCloudStep: 17
     m_Colors:
-    - _OverheadCloudColor: {r: 0.2830189, g: 0.2611719, b: 0.24430405, a: 0.5019608}
+    - _OverheadCloudColor: {r: 0.16936633, g: 0.20389512, b: 0.20754719, a: 0.25490198}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &11400000
@@ -231,11 +231,11 @@ MonoBehaviour:
   horizonCloudStep: 25
   horizonCloudAnimationSpeed: 50
   enableOverheadCloud: 1
-  overheadCloudColor: {r: 0.2830189, g: 0.2611719, b: 0.24430405, a: 0.5019608}
+  overheadCloudColor: {r: 0.16936633, g: 0.20389512, b: 0.20754719, a: 0.25490198}
   overheadCloudAltitude: 10
   overheadCloudSize: 0.1
   overheadCloudStep: 17
-  overheadCloudAnimationSpeed: 44.2
+  overheadCloudAnimationSpeed: 20
   overheadCloudFlowDirectionX: 1
   overheadCloudFlowDirectionZ: 1
   overheadCloudRemapMin: -4.55
