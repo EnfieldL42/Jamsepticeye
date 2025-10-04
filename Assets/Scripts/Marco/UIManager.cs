@@ -212,6 +212,7 @@ public class UIManager : MonoBehaviour
     private void ShowRegularDialogue(DialogueObject Data = default)
     {
         InTypewriter = true;
+        DialogueName.gameObject.SetActive(!string.IsNullOrEmpty(Data.SpeakerName));
 
         if (Data.SpeakerName.ToLower() == "{npc_name}")
         {
