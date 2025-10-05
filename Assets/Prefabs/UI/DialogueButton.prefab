@@ -272,4 +272,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueButton
   ButtonText: {fileID: 2278046306762338754}
   Button: {fileID: 5588900869985499907}
+  Option:
+    OptionText: 
+    ClosesDialogue: 0
+    ProceedingDialogue: {fileID: 0}
+    Function: {fileID: 0}
   ProceedingDialogue: {fileID: 0}
