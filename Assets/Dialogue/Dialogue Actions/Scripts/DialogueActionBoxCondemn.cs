@@ -8,6 +8,8 @@ public class DialogueActionBoxCondemn : DialogueAction
         base.OnButtonPressed();
 
         GameManager.Instance.CondemnSoul();
+
+        GameManager.Instance.CheckSoulCount();
     }
 }
 

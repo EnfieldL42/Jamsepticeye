@@ -8,6 +8,13 @@ public class DialogueActionBoxFree : DialogueAction
         base.OnButtonPressed();
 
         GameManager.Instance.FreeSoul();
+
+        if (GameManager.Instance.SoulsFreed == 1)
+        {
+            ReaperManager.Instance.ReaperCallEvent();
+        }
+
+        GameManager.Instance.CheckSoulCount();
     }
 }
 

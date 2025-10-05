@@ -24,8 +24,8 @@ public class GameManager : MonoBehaviour
     private int soulIndex = 0;
     public bool playerHasSoul = false;
 
-    [SerializeField] int SoulsDamned = 0;
-    [SerializeField] int SoulsFreed = 0;
+    public int SoulsDamned = 0;
+    public int SoulsFreed = 0;
 
     [Header("Countdown Settings")]
     public float countdownTime = 10f;
@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    //SOUL INSTANTIATING
+    //SOUL MECHANICS
 
     public GameObject SpawnNextSoulPrefab(Transform parent)
     {
@@ -174,5 +174,28 @@ public class GameManager : MonoBehaviour
 
         yield return null;
     }
+
+    public void CheckSoulCount()
+    {
+        if(SoulsDamned + SoulsFreed >= 20)
+        {
+            if (SoulsFreed <= 1)
+            {
+                ReaperManager.Instance.ChooseEnding(1);
+            }
+            else
+            {
+                ReaperManager.Instance.ChooseEnding(2);
+            }
+        }
+    }
+
+    //ENDING SEQUENCE
+
+    public void EndingSequence()
+    {
+        
+    }
+
 
 }
