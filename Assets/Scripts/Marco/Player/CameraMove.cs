@@ -31,24 +31,6 @@ public class CameraMove : MonoBehaviour
     private Vector2 CameraInputs;
     private bool CameraInitialized = false;
 
-    private IEnumerator WaitForPlayerInputManager()
-    {
-        while (PlayerInputManager.playerInputManager == null || !PlayerInputManager.playerInputManager.ControlsEnabled)
-        {
-            yield return null;
-        }
-
-        Controls = PlayerInputManager.playerInputManager.playerControls;
-        Controls.Enable();
-
-        Controls.PlayerMovement.Look.started += OnCameraMoved;
-
-        Controls.PlayerMovement.Look.canceled += OnCameraStopped;
-        CameraInitialized = true;
-
-        GameManager.Instance.SetCurstorState(CursorLockMode.Locked, false);
-    }
-
     private void Awake()
     {
         if (Instance == null)
@@ -63,11 +45,7 @@ public class CameraMove : MonoBehaviour
 
     private void Start()
     {
-        //StartCoroutine(WaitForPlayerInputManager());
-
         Controls = PlayerInputManager.playerInputManager.playerControls;
-        //Controls.Enable();
-
         Controls.PlayerMovement.Look.started += OnCameraMoved;
 
         Controls.PlayerMovement.Look.canceled += OnCameraStopped;
