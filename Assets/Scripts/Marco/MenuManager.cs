@@ -24,6 +24,7 @@ public class MenuManager : MonoBehaviour
     private bool ButtonsEnabled = true;
     private float MasterVolume;
     private bool ChangingMasterVolume = false;
+    private bool VsyncEnabled = false;
 
     [Header("Main UI Elements")]
     [SerializeField] private TextMeshProUGUI TitleText;
@@ -32,6 +33,10 @@ public class MenuManager : MonoBehaviour
     [Space, Header("Settings UI Elements")]
     [SerializeField] private TextMeshProUGUI MasterVolumePercentage;
     [SerializeField] private Slider MasterVolumeSlider;
+
+    [SerializeField] private Sprite CheckedSprite;
+    [SerializeField] private Sprite UncheckedSprite;
+    [SerializeField] private Image VsyncCheckbox;
 
     [Header("Audio Mixer")]
     [SerializeField] AudioMixer mixer;
@@ -66,14 +71,29 @@ public class MenuManager : MonoBehaviour
         //MasterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
         //AudioListener.volume = MasterVolume;
         StartingCameraRotation = MenuCamera.transform.rotation;
+        int Vsync = PlayerPrefs.GetInt("Vsync", 1);
+        VsyncEnabled = Vsync == 1;
+        QualitySettings.vSyncCount = Vsync;
 
         //MasterVolumeSlider.value = MasterVolume;
         //MasterVolumePercentage.SetText("{0}%", Mathf.Round(MasterVolumeSlider.value * 100f));
     }
 
+    public void UpdateVsync()
+    {
+        VsyncEnabled = !VsyncEnabled;
+        VsyncCheckbox.sprite = VsyncEnabled ? CheckedSprite : UncheckedSprite;
+
+        int VsyncCount = VsyncEnabled ? 1 : 0;
+        QualitySettings.vSyncCount = VsyncCount;
+
+        PlayerPrefs.SetInt("Vsync", VsyncCount);
+        PlayerPrefs.Save();
+    }
+
     private void Start()
     {
-        if(PlayerPrefs.HasKey("MasterVolume"))
+        if (PlayerPrefs.HasKey("MasterVolume"))
         {
             LoadVolume();
         }
