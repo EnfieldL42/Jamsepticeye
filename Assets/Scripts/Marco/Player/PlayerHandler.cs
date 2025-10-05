@@ -42,23 +42,6 @@ public class PlayerHandler : MonoBehaviour
         }
     }
 
-    private IEnumerator WaitForInputManager()
-    {
-        while (PlayerInputManager.playerInputManager == null && !PlayerInputManager.playerInputManager.ControlsEnabled)
-        {
-            yield return null;
-        }
-
-        Controls = PlayerInputManager.playerInputManager.playerControls;
-        Controls.Enable();
-
-        InteractionKeybind = Controls.PlayerActions.Interact.bindings[0].ToDisplayString();
-        Controls.PlayerActions.Interact.started += Interact;
-
-        InteractionLayerID = (int)Mathf.Log(InteractionLayerMask.value, 2);
-        PlayerInitialized = true;
-    }
-
     private void OnDisable()
     {
         Controls.PlayerActions.Interact.started -= Interact;
@@ -66,11 +49,7 @@ public class PlayerHandler : MonoBehaviour
 
     private void Start()
     {
-        //StartCoroutine(WaitForInputManager());
-
         Controls = PlayerInputManager.playerInputManager.playerControls;
-        //Controls.Enable();
-
         InteractionKeybind = Controls.PlayerActions.Interact.bindings[0].ToDisplayString();
         Controls.PlayerActions.Interact.started += Interact;
 
@@ -108,6 +87,7 @@ public class PlayerHandler : MonoBehaviour
 
     private void Update()
     {
+
         if (!PlayerInitialized || !InteractionListening) return;
 
         RaycastHit DetectedObject;

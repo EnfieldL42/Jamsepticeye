@@ -127,6 +127,8 @@ public class FishingMechanics : MonoBehaviour
         if (progressBar.value >= 1f)
         {
             Debug.Log("Fish Caught");
+            RodManager.Instance.FishingRodAnimator.Play("Rod Return");
+
             baitManager.InstantiateSoulAtBait();
             GameManager.Instance.playerHasSoul = true;
             rodManager.ReturnBait();
@@ -137,6 +139,8 @@ public class FishingMechanics : MonoBehaviour
         else if (progressBar.value <= 0f && initialTimerStart <= 0f)
         {
             Debug.Log("Fish Escaped");
+            RodManager.Instance.FishingRodAnimator.Play("Rod Return");
+
             rodManager.ReturnBait();
             ResetFishing();
 

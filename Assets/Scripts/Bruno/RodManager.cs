@@ -1,14 +1,24 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class RodManager : MonoBehaviour
 {
+    public static RodManager Instance { get; private set; }
     [Header("References")]
     public Transform rodTip;
-    public Rigidbody bait;
+    public Rigidbody BaitPosition;
     public LayerMask waterLayer;
     public ConfigurableJoint BaitJoint;
-    public Vector3 Torque;
+
+    public ConstantForce BaitGravity;
+    public Rigidbody BaitVisuals;
+
+    public Rigidbody RodTipRigidbody;
+    public Vector3 DefaultGravity = new Vector3(0, -300, 0);
+    public Vector3 FishingGravity = new Vector3(0, -20, 0);
+    public Transform BaitReference;
+    public Animator FishingRodAnimator;
 
     [Header("Throw Settings")]
     public float throwHeight = 2f;       // vertical boost
@@ -16,21 +26,31 @@ public class RodManager : MonoBehaviour
     public float bobAmplitude = 0.2f;    // max up/down offset while bobbing
     public float bobFrequency = 1f;      // how fast it bobs
 
-    private bool isThrowing = false;
+    public bool isThrowing = false;
     public bool onWater = false;
     public bool canCast = true;
 
     private Vector3 velocity;             // current velocity of the bait
     private Vector3 baitOffset;
     private float bobTimer = 0f;          // timer for bobbing
-    bool test;
+    private Vector3 PreviousBaitPosition;
 
     private PlayerControls playerControls;
     [SerializeField] BaitManager fishingTimer;
+    private bool BringingBackBait;
 
     private void Awake()
     {
         playerControls = new PlayerControls();
+
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnEnable()
@@ -47,8 +67,8 @@ public class RodManager : MonoBehaviour
 
     private void Start()
     {
-        if (bait != null && rodTip != null)
-            baitOffset = bait.position - rodTip.position;
+        if (BaitPosition != null && rodTip != null)
+            baitOffset = BaitPosition.position - rodTip.position;
     }
 
     private void LateUpdate()
@@ -62,6 +82,9 @@ public class RodManager : MonoBehaviour
             canCast = true;
         }
 
+        BaitVisuals.MovePosition(BaitPosition.position);
+        BaitVisuals.MoveRotation(BaitPosition.rotation);
+
         /*
         // Keep bait at rod tip if not throwing or on water
         if (!isThrowing && !onWater)
@@ -73,9 +96,9 @@ public class RodManager : MonoBehaviour
         if (onWater)
         {
             bobTimer += Time.deltaTime * bobFrequency;
-            Vector3 bobPos = bait.position;
+            Vector3 bobPos = BaitPosition.position;
             bobPos.y += Mathf.Sin(bobTimer * Mathf.PI * 2f) * bobAmplitude;
-            bait.MovePosition(bobPos);
+            BaitPosition.MovePosition(bobPos);
         }
     }
 
@@ -95,74 +118,150 @@ public class RodManager : MonoBehaviour
             }
             else
             {
-                ThrowBait();
+                StartThrowBait();
             }
         }
     }
 
-    private void ThrowBait()
+    public void StartThrowBait()
     {
-        // Detach from player so it moves freely
-        //bait.transform.parent = null;
+        if (isThrowing) return;
+
+        PlayerMovement.Instance.MovementDisabled = true;
+        CameraMove.Instance.PlayerControlsCamera = false;
+        FishingRodAnimator.Play("Throw");
+    }
+
+    public void ThrowBait()
+    {
         BaitJoint.connectedBody = null;
         BaitJoint.xMotion = ConfigurableJointMotion.Free;
         BaitJoint.yMotion = ConfigurableJointMotion.Free;
         BaitJoint.zMotion = ConfigurableJointMotion.Free;
-        test = true;
+        BaitGravity.force = FishingGravity;
 
-
-        // Compute initial velocity
-        Vector3 forward = rodTip.forward;
+        Vector3 forward = RodTipRigidbody.transform.forward;
         Vector3 up = Vector3.up;
-        velocity = forward * throwSpeed + up * throwHeight;
+        Vector3 velocity = forward * throwSpeed + up * throwHeight;
 
-        bait.AddTorque(velocity);
+        BaitPosition.isKinematic = false;
+        BaitPosition.linearVelocity = Vector3.zero;
+        BaitPosition.AddForce(velocity, ForceMode.VelocityChange);
 
-        //isThrowing = true;
         onWater = false;
+        isThrowing = true;
         bobTimer = 0f;
     }
 
-    public void ReturnBait()
+
+    // Coroutine that continuously moves bait to moving target
+    private IEnumerator SmoothReturn()
     {
-        // Return bait to rod tip
-        fishingTimer.timerStarted = false; // reset bite timer
-        bait.position = rodTip.position + baitOffset;
-        bait.transform.parent = rodTip; // optional
-        onWater = false;
-        bobTimer = 0f; // reset bob timer
-        Debug.Log("Bait returned to rod.");
+        while (BringingBackBait)
+        {
+            yield return null;
+            BaitPosition.MovePosition(Vector3.Lerp(BaitPosition.position, BaitReference.position, 2f * Time.deltaTime));
+            BaitPosition.MoveRotation(Quaternion.Slerp(BaitPosition.rotation, BaitReference.rotation, 2f * Time.deltaTime));
+        }
     }
 
+    // Called when animation finishes
+    public void ReturnBait()
+    {
+        BringingBackBait = false; // stop SmoothReturn
+
+        // Smoothly move to final target once animation ends
+        //StartCoroutine(FinalReturnCoroutine());
+    }
+
+    private Coroutine currentReturnCoroutine;
+
+    // Called by animation event to start return
+    public void StartReturningBait()
+    {
+        if (currentReturnCoroutine != null) StopCoroutine(currentReturnCoroutine);
+        currentReturnCoroutine = StartCoroutine(SmoothReturnWhileAnimation());
+    }
+
+    private IEnumerator SmoothReturnWhileAnimation()
+    {
+        BaitPosition.isKinematic = true; // disable physics while animation moves it
+        while (BringingBackBait) // animation should set this true/false
+        {
+            BaitPosition.position = Vector3.Lerp(BaitPosition.position, BaitReference.position, 2f * Time.deltaTime);
+            BaitPosition.rotation = Quaternion.Slerp(BaitPosition.rotation, BaitReference.rotation, 2f * Time.deltaTime);
+            yield return null;
+        }
+
+        // Animation finished, move smoothly to final position
+        float t = 0f;
+        Vector3 startPos = BaitPosition.position;
+        Quaternion startRot = BaitPosition.rotation;
+        float duration = 0.3f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime / duration;
+            BaitPosition.position = Vector3.Lerp(startPos, BaitReference.position, t);
+            BaitPosition.rotation = Quaternion.Slerp(startRot, BaitReference.rotation, t);
+            yield return null;
+        }
+
+        // Ensure final position
+        BaitPosition.position = BaitReference.position;
+        BaitPosition.rotation = BaitReference.rotation;
+
+        // Reconnect joint and restore physics
+        BaitJoint.connectedBody = RodTipRigidbody;
+        BaitJoint.xMotion = ConfigurableJointMotion.Limited;
+        BaitJoint.yMotion = ConfigurableJointMotion.Limited;
+        BaitJoint.zMotion = ConfigurableJointMotion.Limited;
+
+        BaitPosition.isKinematic = false;
+
+        // Reset flags
+        onWater = false;
+        bobTimer = 0f;
+        PlayerMovement.Instance.MovementDisabled = false;
+        CameraMove.Instance.PlayerControlsCamera = true;
+
+        currentReturnCoroutine = null;
+    }
+
+
+    /*
     private void Update()
     {
-        if (test)
-        {
-            Torque = rodTip.forward * 2f;
-
-            bait.AddForceAtPosition(Torque, bait.position);
-        }
 
         if (!isThrowing) return;
 
         print("Hello");
         // Apply gravity
-        velocity += Physics.gravity * Time.deltaTime;
+        //velocity += Physics.gravity * Time.deltaTime;
 
         // Move bait
-        bait.position += velocity * Time.deltaTime;
+        //bait.position += velocity * Time.deltaTime;
 
         // Check if hit water
         RaycastHit hit;
-        if (Physics.Raycast(bait.position + Vector3.up * 0.1f, Vector3.down, out hit, 0.2f, waterLayer))
+        if (Physics.Raycast(BaitPosition.position + Vector3.up * 0.1f, Vector3.down, out hit, 0.2f, waterLayer))
         {
             isThrowing = false;
             onWater = true;
             // Snap to water surface
-            bait.MovePosition(hit.point);
+            //bait.MovePosition(hit.point);
             bobTimer = 0f;
             Debug.Log("Bait hit water!");
         }
+    }*/
+
+    public void OnBaitTouchedWater()
+    {
+        isThrowing = false;
+        onWater = true;
+        // Snap to water surface
+        BaitPosition.isKinematic = true;
+        bobTimer = 0f;
+        Debug.Log("Bait hit water!");
     }
 }
 

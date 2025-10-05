@@ -50,7 +50,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (MovementDisabled || !MovementInitialized) return;
+        if (!MovementInitialized) return;
+
+        if (MovementDisabled)
+        {
+            if (Rigidbody.linearVelocity.magnitude != 0)
+            {
+                Rigidbody.linearVelocity = Vector3.zero;
+                return;
+            }
+            else
+            {
+                return;
+            }
+        }
 
         GroundCheck();
         MovePlayer();
@@ -68,8 +81,6 @@ public class PlayerMovement : MonoBehaviour
             ~PlayerMaskID,
             QueryTriggerInteraction.Ignore
         );
-
-        print(Grounded);
 
         Debug.DrawRay(origin, downDirection * GroundCheckDistance,Grounded ? Color.green : Color.red);
     }

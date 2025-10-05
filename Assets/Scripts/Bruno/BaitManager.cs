@@ -6,6 +6,10 @@ public class BaitManager : MonoBehaviour
     public float minTime = 2f;       // minimum time until fish bites
     public float maxTime = 5f;       // maximum time until fish bites
 
+    int WaterLayer;
+    private Rigidbody BaitRigidbody;
+    public bool FishBiting = false;
+
     [Header("References")]
     public GameObject biteUI;        // UI element to show when fish bites
     [SerializeField] RodManager throwInput; // set to true when bait hits water
@@ -24,6 +28,9 @@ public class BaitManager : MonoBehaviour
     {
         if (biteUI != null)
             biteUI.SetActive(false);  // make sure UI is off at start
+
+        WaterLayer = LayerMask.NameToLayer("Water");
+        BaitRigidbody = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -49,13 +56,16 @@ public class BaitManager : MonoBehaviour
         // Countdown
         biteTimer -= Time.deltaTime;
 
-        if (biteTimer <= 0f)
+        if (biteTimer <= 0f && !FishBiting)
         {
             //biteReady = true;
             if (biteUI != null)
                 biteUI.SetActive(true);
 
             Debug.Log("Fish is biting!");
+
+            RodManager.Instance.FishingRodAnimator.Play("Fish Caught");
+            FishBiting = true;
         }
     }
 
@@ -81,6 +91,14 @@ public class BaitManager : MonoBehaviour
         if (GameManager.Instance != null)
         {
             GameManager.Instance.SpawnNextSoulPrefab(soulSpawnPoint);
+        }
+    }
+
+    private void OnTriggerEnter(Collider Collider)
+    {
+        if (Collider.gameObject.layer == WaterLayer && RodManager.Instance.isThrowing)
+        {
+            RodManager.Instance.OnBaitTouchedWater();
         }
     }
 }
