@@ -15,4 +15,4 @@ MonoBehaviour:
   SpeakerName: 
   DialogueText: Now, as I have promised.
   ClosesDialogue: 0
-  ProceedingDialogue: {fileID: 11400000, guid: a294f1073ad76d54e91e9821cebd42c9, type: 2}
+  ProceedingDialogue: {fileID: 11400000, guid: f8db378559f218d45859cfa7662e2edc, type: 2}

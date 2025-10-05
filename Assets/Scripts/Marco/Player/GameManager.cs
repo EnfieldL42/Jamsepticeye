@@ -194,7 +194,7 @@ public class GameManager : MonoBehaviour
 
     public void EndingSequence()
     {
-        
+        Debug.Log("game ended");
     }
 
 

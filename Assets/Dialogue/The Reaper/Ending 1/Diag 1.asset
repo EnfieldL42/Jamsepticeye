@@ -15,4 +15,4 @@ MonoBehaviour:
   SpeakerName: 
   DialogueText: "I see\u2026 so this is thy decision."
   ClosesDialogue: 0
-  ProceedingDialogue: {fileID: 11400000, guid: c995f0398f4899240990a60492508618, type: 2}
+  ProceedingDialogue: {fileID: 11400000, guid: 2e19b9b96cd66714bab07a6d00f2dfca, type: 2}

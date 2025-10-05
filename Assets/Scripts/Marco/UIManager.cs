@@ -81,7 +81,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void CloseDialogue()
+    public void CloseDialogue()
     {
         CanvasAnimator.SetBool("ShowDialogue", false);
         CameraMove.Instance.PlayerControlsCamera = true;
