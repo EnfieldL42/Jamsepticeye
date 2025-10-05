@@ -779,6 +779,14 @@ MonoBehaviour:
   onWater: 0
   canCast: 1
   fishingTimer: {fileID: 6485025691926386308}
+  CurrentSoulInteract: {fileID: 0}
+  fishingRodAudio: {fileID: 0}
+  baitAudio: {fileID: 0}
+  castSound: {fileID: 0}
+  reelSound: {fileID: 0}
+  fishCaughtSound: {fileID: 0}
+  fishNotCaughtSound: {fileID: 0}
+  baitLandedSound: {fileID: 0}
 --- !u!1 &2900342540362085334
 GameObject:
   m_ObjectHideFlags: 0
@@ -1237,6 +1245,9 @@ MonoBehaviour:
   InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  PlayerMask:
+    serializedVersion: 2
+    m_Bits: 0
   InteractionKeybind: 
   BasePlayerCamera: {fileID: 8545178247619608468}
 --- !u!114 &4286855770667050556
