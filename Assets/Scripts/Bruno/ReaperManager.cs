@@ -83,11 +83,13 @@ public class ReaperManager : MonoBehaviour
         {
             dialogueInteract.StartingDialogue = endingDialogues[0];
             //play ending sequence
+            ReaperCallEvent();
         }
         else if (endingID == 2)
         {
             dialogueInteract.StartingDialogue = endingDialogues[1];
             //play ending sequence
+            ReaperCallEvent();
         }
     }
 
@@ -147,6 +149,12 @@ public class ReaperManager : MonoBehaviour
         {
             light.color = emissionColor;
         }
+    }
+
+
+    public void EndingSequence()
+    {
+
     }
 
 }
