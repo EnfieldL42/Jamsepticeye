@@ -138,8 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f12ccad1a8679de4f9fe22b45488ca4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractTest
-  Data: {fileID: 11400000, guid: 8beaae114ab1bd6408c3a863d41a2a65, type: 2}
-  StartingDialogue: {fileID: 11400000, guid: 17ab93ce972772248b95bf112e736ae1, type: 2}
+  Data: {fileID: 11400000, guid: 943b142ceba3b514c93d1f1c92b0616b, type: 2}
+  StartingDialogue: {fileID: 11400000, guid: d0b0de35f6466584bbed730ffa183e98, type: 2}
 --- !u!135 &8442541515170423685
 SphereCollider:
   m_ObjectHideFlags: 0
