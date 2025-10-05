@@ -4,7 +4,7 @@ public class FishingRodWorldObjectManager : MonoBehaviour
 {
     public static FishingRodWorldObjectManager Instance;
 
-    private Collider col;
+    [SerializeField] Collider col;
     [SerializeField] GameObject fishingRodInHand;
 
 
@@ -22,8 +22,6 @@ public class FishingRodWorldObjectManager : MonoBehaviour
         {
             Destroy(this);
         }
-
-        col = GetComponent<Collider>();
 
     }
 
