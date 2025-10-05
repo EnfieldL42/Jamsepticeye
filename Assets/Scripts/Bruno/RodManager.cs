@@ -168,8 +168,8 @@ public class RodManager : MonoBehaviour
     {
         if (isThrowing) return;
 
-        PlayerMovement.Instance.MovementDisabled = true;
-        CameraMove.Instance.PlayerControlsCamera = false;
+        //PlayerMovement.Instance.MovementDisabled = true;
+        //CameraMove.Instance.PlayerControlsCamera = false;
         FishingRodAnimator.Play("Throw");
     }
 
@@ -242,8 +242,8 @@ public class RodManager : MonoBehaviour
         // Reset flags
         onWater = false;
         bobTimer = 0f;
-        PlayerMovement.Instance.MovementDisabled = false;
-        CameraMove.Instance.PlayerControlsCamera = true;
+        //PlayerMovement.Instance.MovementDisabled = false;
+        //CameraMove.Instance.PlayerControlsCamera = true;
 
         currentReturnCoroutine = null;
         CurrentSoulInteract?.EnableInteractionUI();
