@@ -87,23 +87,39 @@ public class RodManager : MonoBehaviour
     {
         if (GameManager.Instance.playerHasSoul)
         {
+            Debug.Log("Player has soul");
             canCast = false;
         }
-
-        if (GameManager.Instance.SoulsDamned + GameManager.Instance.SoulsFreed >= 20)
+        else if (onWater)
         {
             canCast = false;
         }
-
-        if(GameManager.Instance.playerHasSoul && !UIManager.Instance.DialogueIsOpen)
+        else if (isThrowing)
+        {
+            canCast = false;
+        }
+        else if (UIManager.Instance.DialogueIsOpen)
+        {
+            Debug.Log("dialogue is open");
+            canCast = false;
+        }
+        else if (GameManager.Instance.SoulsDamned + GameManager.Instance.SoulsFreed >= 20)
+        {
+            Debug.Log("Player Has caught 20 souls");
+            canCast = false;
+        }
+        else
         {
             canCast = true;
         }
 
-        if (UIManager.Instance.DialogueIsOpen)
-        {
-            canCast = false;
-        }
+
+        //if (!GameManager.Instance.playerHasSoul && !UIManager.Instance.DialogueIsOpen)
+        //{
+        //    Debug.Log("Player can cast");
+        //    canCast = true;
+        //}
+
 
         BaitVisuals.MovePosition(BaitPosition.position);
         BaitVisuals.MoveRotation(BaitPosition.rotation);
@@ -129,21 +145,22 @@ public class RodManager : MonoBehaviour
     {
         if (canCast)
         {
+            canCast = false;
             if (isThrowing)
             {
                 Debug.Log("Cannot cast while bait is in the air.");
                 return;
-            }
-
-            if (onWater)
-            {
-                ReturnBait();
             }
             else
             {
                 StartThrowBait();
             }
         }
+
+        //if (onWater)
+        //{
+        //    ReturnBait();
+        //}
     }
 
     public void StartThrowBait()

@@ -10,6 +10,8 @@ public class DialogueActionBoxCondemn : DialogueAction
         GameManager.Instance.CondemnSoul();
 
         GameManager.Instance.CheckSoulCount();
+
+        PandorasManager.Instance.CheckIfGiveFreeSoulOption();
     }
 }
 

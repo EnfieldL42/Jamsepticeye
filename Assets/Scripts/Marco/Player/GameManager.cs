@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     [Header("Souls Prefabs")]
     public List<GameObject> SoulPrefabs = new List<GameObject>();
     private GameObject lastSpawnedSoul;
-    private int soulIndex = 0;
+    public int soulIndex = 0;
     public bool playerHasSoul = false;
 
     public int SoulsDamned = 0;
