@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -38,6 +39,13 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI SoulInteractionText;
     public bool DialogueIsOpen = false;
 
+    [SerializeField] TextMeshProUGUI soulsFreedText;
+    [SerializeField] TextMeshProUGUI soulsDamnedText;
+    [SerializeField] GameObject endScreen;
+    [SerializeField] private float fadeDuration = 1.5f;
+    private CanvasGroup endScreenCanvasGroup;
+
+
     private void Awake()
     {
         if (Instance == null)
@@ -50,6 +58,16 @@ public class UIManager : MonoBehaviour
         }
 
         CanvasAnimator = GetComponent<Animator>();
+
+        if (endScreen != null)
+        {
+            endScreenCanvasGroup = endScreen.GetComponent<CanvasGroup>();
+            if (endScreenCanvasGroup == null)
+                endScreenCanvasGroup = endScreen.AddComponent<CanvasGroup>();
+
+            endScreenCanvasGroup.alpha = 0f;
+            endScreen.SetActive(false);
+        }
     }
 
     private void Start()
@@ -270,4 +288,43 @@ public class UIManager : MonoBehaviour
     {
         fishingBar.SetActive(true);
     }
+
+
+    #region Ending Sequence
+    public void UIEndingSequence()
+    {
+        soulsFreedText.text = ("YOU HAVE FREED " + GameManager.Instance.SoulsFreed + " SOULS");
+        soulsDamnedText.text = ("YOU HAVE DAMNED " + GameManager.Instance.SoulsDamned + " SOULS");
+
+
+        StartCoroutine(FadeInEndScreen());
+    }
+
+    private IEnumerator FadeInEndScreen()
+    {
+        endScreen.SetActive(true);
+        float timer = 0f;
+
+        while (timer < fadeDuration)
+        {
+            timer += Time.unscaledDeltaTime; 
+            endScreenCanvasGroup.alpha = Mathf.Lerp(0f, 1f, timer / fadeDuration);
+            yield return null;
+        }
+
+        endScreenCanvasGroup.alpha = 1f;
+
+        Time.timeScale = 0f;
+
+        GameManager.Instance.SetCurstorState(CursorLockMode.None, true);
+
+        yield return null;
+    }
+
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+    #endregion
 }

@@ -160,11 +160,16 @@ public class MenuManager : MonoBehaviour
     public void SetMasterVolume()
     {
         float volume = MasterVolumeSlider.value;
+
+        if (volume <= 0.0001f)
+            volume = 0.0001f;
+
         mixer.SetFloat("Master", Mathf.Log10(volume) * 20);
         MasterVolumePercentage.SetText("{0}%", Mathf.Round(MasterVolumeSlider.value * 100f));
 
-        PlayerPrefs.SetFloat("MasterVolume", volume);
+        PlayerPrefs.SetFloat("MasterVolume", MasterVolumeSlider.value);
     }
+
 
     public void LoadVolume()
     {

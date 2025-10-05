@@ -29,6 +29,7 @@ public class ReaperManager : MonoBehaviour
     [SerializeField] bool goEndingDialogue = false;
     [SerializeField] bool callReaper = false;
 
+
     private void Start()
     {
         ChangeLanternColor(lanternNormalColor);
@@ -49,21 +50,21 @@ public class ReaperManager : MonoBehaviour
 
     private void Update()
     {
-        if (goNextDialogue)
-        {
-            goNextDialogue = false;
-            GoNextDialogue();
-        }
-        if (goEndingDialogue)
-        {
-            goEndingDialogue = false;
-            ChooseEnding(1);
-        }
-        if (callReaper)
-        {
-            callReaper = false;
-            ReaperCallEvent();
-        }
+        //if (goNextDialogue)
+        //{
+        //    goNextDialogue = false;
+        //    GoNextDialogue();
+        //}
+        //if (goEndingDialogue)
+        //{
+        //    goEndingDialogue = false;
+        //    ChooseEnding(1);
+        //}
+        //if (callReaper)
+        //{
+        //    callReaper = false;
+        //    ReaperCallEvent();
+        //}
 
     }
 
