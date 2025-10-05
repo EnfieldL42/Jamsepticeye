@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using VHierarchy.Libs;
 
 public class MenuUnderlineButton : MonoBehaviour
 {
@@ -40,7 +39,7 @@ public class MenuUnderlineButton : MonoBehaviour
             CurrentScale.x = Mathf.Lerp(CurrentScale.x, TargetUnderlineScale.x, 20f * Time.deltaTime);
             Underline.localScale = CurrentScale;
 
-            if (TargetUnderlineScale == Vector2.zero && CurrentScale.DistanceTo(TargetUnderlineScale) == 1f)
+            if (TargetUnderlineScale == Vector2.zero && Vector3.Distance(CurrentScale, TargetUnderlineScale) == 1f)
             {
                 Hovering = false;
                 Underline.gameObject.SetActive(false);
