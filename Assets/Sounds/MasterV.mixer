@@ -6,7 +6,7 @@ AudioMixerController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Main Audios
+  m_Name: MasterV
   m_OutputGroup: {fileID: 0}
   m_MasterGroup: {fileID: 24300002}
   m_Snapshots:
@@ -15,7 +15,9 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: 1560ad00ef1eaa04ba87404edf462b31
+    name: Master
   m_AudioMixerGroupViews:
   - guids:
     - 895647f5c2efa3a4fa1b412c983b821c
@@ -65,5 +67,5 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 689f8fb98c68aa14680a183136c4a191
   m_FloatValues:
-    1560ad00ef1eaa04ba87404edf462b31: 0.27000841
+    1560ad00ef1eaa04ba87404edf462b31: -0.27209902
   m_TransitionOverrides: {}

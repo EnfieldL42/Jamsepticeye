@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class MenuManager : MonoBehaviour
 {
@@ -31,6 +32,9 @@ public class MenuManager : MonoBehaviour
     [Space, Header("Settings UI Elements")]
     [SerializeField] private TextMeshProUGUI MasterVolumePercentage;
     [SerializeField] private Slider MasterVolumeSlider;
+
+    [Header("Audio Mixer")]
+    [SerializeField] AudioMixer mixer;
 
     private IEnumerator TeleportToNewScene()
     {
@@ -59,12 +63,24 @@ public class MenuManager : MonoBehaviour
             TitleText.SetText($"<pend>{InitialText}</pend>");
         }
 
-        MasterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
-        AudioListener.volume = MasterVolume;
+        //MasterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
+        //AudioListener.volume = MasterVolume;
         StartingCameraRotation = MenuCamera.transform.rotation;
 
-        MasterVolumeSlider.value = MasterVolume;
-        MasterVolumePercentage.SetText("{0}%", Mathf.Round(MasterVolumeSlider.value * 100f));
+        //MasterVolumeSlider.value = MasterVolume;
+        //MasterVolumePercentage.SetText("{0}%", Mathf.Round(MasterVolumeSlider.value * 100f));
+    }
+
+    private void Start()
+    {
+        if(PlayerPrefs.HasKey("MasterVolume"))
+        {
+            LoadVolume();
+        }
+        else
+        {
+            SetMasterVolume();
+        }
     }
 
     private void Update()
@@ -100,25 +116,41 @@ public class MenuManager : MonoBehaviour
         ButtonsEnabled = true;
     }
 
-    public void ChangeMasterVolume()
-    {
-        MasterVolumePercentage.SetText("{0}%", Mathf.Round(MasterVolumeSlider.value * 100f));
-        AudioListener.volume = MasterVolumeSlider.value;
+    //public void ChangeMasterVolume()
+    //{
+    //    MasterVolumePercentage.SetText("{0}%", Mathf.Round(MasterVolumeSlider.value * 100f));
+    //    AudioListener.volume = MasterVolumeSlider.value;
 
-        if (!ChangingMasterVolume)
-        {
-            ChangingMasterVolume = true;
-        }
+    //    if (!ChangingMasterVolume)
+    //    {
+    //        ChangingMasterVolume = true;
+    //    }
+    //}
+
+    //public void SubmitMasterVolume()
+    //{
+    //    if (!ChangingMasterVolume) return;
+    //    ChangingMasterVolume = false;
+
+    //    AudioListener.volume = MasterVolumeSlider.value;
+    //    PlayerPrefs.SetFloat("MasterVolume", MasterVolumeSlider.value);
+    //    PlayerPrefs.Save();
+    //}
+
+    public void SetMasterVolume()
+    {
+        float volume = MasterVolumeSlider.value;
+        mixer.SetFloat("Master", Mathf.Log10(volume) * 20);
+        MasterVolumePercentage.SetText("{0}%", Mathf.Round(MasterVolumeSlider.value * 100f));
+
+        PlayerPrefs.SetFloat("MasterVolume", volume);
     }
 
-    public void SubmitMasterVolume()
+    public void LoadVolume()
     {
-        if (!ChangingMasterVolume) return;
-        ChangingMasterVolume = false;
-
-        AudioListener.volume = MasterVolumeSlider.value;
-        PlayerPrefs.SetFloat("MasterVolume", MasterVolumeSlider.value);
-        PlayerPrefs.Save();
+        MasterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume"); 
+        
+        SetMasterVolume();
     }
 
     public void CloseSettings()
