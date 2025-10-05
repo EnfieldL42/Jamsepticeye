@@ -36,6 +36,9 @@ public class RodManager : MonoBehaviour
     private Vector3 baitOffset;
     private float bobTimer = 0f;          // timer for bobbing
     private Vector3 PreviousBaitPosition;
+    int WaterLayerID;
+    int ItemLayerID;
+    int DefaultLayerID;
 
     private PlayerControls playerControls;
     [SerializeField] BaitManager fishingTimer;
@@ -64,6 +67,10 @@ public class RodManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        WaterLayerID = LayerMask.NameToLayer("Water");
+        ItemLayerID = LayerMask.NameToLayer("Item");
+        DefaultLayerID = LayerMask.NameToLayer("Default");
     }
 
     private void OnEnable()
@@ -146,6 +153,16 @@ public class RodManager : MonoBehaviour
     {
         if (canCast)
         {
+            RaycastHit FishingCheck;
+            Vector3 RaycastOrigin = PlayerHandler.Instance.BasePlayerCamera.transform.position;
+            Vector3 RaycastDirection = PlayerHandler.Instance.BasePlayerCamera.transform.forward;
+
+            if (Physics.Raycast(RaycastOrigin, RaycastDirection, out FishingCheck, 500f))
+            {
+
+                if (FishingCheck.transform.gameObject.layer != WaterLayerID) return;
+            }
+
             canCast = false;
             if (isThrowing)
             {
@@ -175,6 +192,23 @@ public class RodManager : MonoBehaviour
 
     public void ThrowBait()
     {
+        RaycastHit FishingCheck;
+        Vector3 RaycastOrigin = PlayerHandler.Instance.BasePlayerCamera.transform.position;
+        Vector3 RaycastDirection = PlayerHandler.Instance.BasePlayerCamera.transform.forward;
+
+        if (Physics.Raycast(RaycastOrigin, RaycastDirection, out FishingCheck, 500f))
+        {
+
+            if (FishingCheck.transform.gameObject.layer != WaterLayerID)
+            {
+                FishingRodAnimator.Play("Rod Return");
+                return;
+            }
+        }
+
+        BaitVisuals.gameObject.layer = DefaultLayerID;
+        BaitPosition.transform.SetParent(GameManager.Instance.World);
+
         BaitJoint.connectedBody = null;
         BaitJoint.xMotion = ConfigurableJointMotion.Free;
         BaitJoint.yMotion = ConfigurableJointMotion.Free;
@@ -247,6 +281,8 @@ public class RodManager : MonoBehaviour
 
         currentReturnCoroutine = null;
         CurrentSoulInteract?.EnableInteractionUI();
+        BaitPosition.transform.SetParent(transform);
+        BaitVisuals.gameObject.layer = ItemLayerID;
     }
 
 

@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     private float StartSpeed = 0f;
     private bool Initialized = false;
+    public Transform World;
+    public Transform Water;
 
     [Header("Souls Prefabs")]
     public List<GameObject> SoulPrefabs = new List<GameObject>();

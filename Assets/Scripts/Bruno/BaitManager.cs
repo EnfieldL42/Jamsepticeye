@@ -41,6 +41,13 @@ public class BaitManager : MonoBehaviour
             InstantiateSoulAtBait();
         }
 
+
+        if (RodManager.Instance.isThrowing && transform.position.y < GameManager.Instance.Water.position.y - 5f)
+        {
+            RodManager.Instance.FishingRodAnimator.Play("Rod Return");
+            return;
+        }
+
         if (!throwInput.onWater)
         {
             timerStarted = false; // reset if not on water
