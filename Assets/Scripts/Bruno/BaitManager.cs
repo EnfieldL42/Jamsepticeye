@@ -62,6 +62,7 @@ public class BaitManager : MonoBehaviour
             if (biteUI != null)
                 biteUI.SetActive(true);
 
+
             Debug.Log("Fish is biting!");
 
             RodManager.Instance.FishingRodAnimator.Play("Fish Caught");
@@ -80,6 +81,7 @@ public class BaitManager : MonoBehaviour
     /// Optional: Call this if fish is caught or bait is pulled back
     public void ResetBite()
     {
+        FishBiting = false;
         biteReady = false;
         timerStarted = false;
         if (biteUI != null)

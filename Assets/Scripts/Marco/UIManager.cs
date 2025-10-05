@@ -32,6 +32,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private DialogueButton DialogueOptionPrefab;
     private string CurrentNPCName = "";
 
+    [SerializeField] GameObject fishingBar;
+
     private void Awake()
     {
         if (Instance == null)
@@ -252,4 +254,10 @@ public class UIManager : MonoBehaviour
         print("Hello");
     }
     #endregion
+
+
+    public void enableFishingRodMiniGame()
+    {
+        fishingBar.SetActive(true);
+    }
 }
