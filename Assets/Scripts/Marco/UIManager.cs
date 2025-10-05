@@ -34,6 +34,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] GameObject fishingBar;
 
+    public bool DialogueIsOpen = false;
+
     private void Awake()
     {
         if (Instance == null)
@@ -90,6 +92,8 @@ public class UIManager : MonoBehaviour
         PlayerHandler.Instance.SetInteractionListening(true);
         PlayerMovement.Instance.MovementDisabled = false;
         CurrentNPCName = "";
+
+        DialogueIsOpen = false;
     }
 
     private void SetNextDialogue()
@@ -230,6 +234,7 @@ public class UIManager : MonoBehaviour
 
     public void StartDialogue(DialogueNode DialogueData = default, string NPCName = default)
     {
+
         if (DialogueData == null) return;
         CurrentNPCName = NPCName;
 
@@ -241,6 +246,8 @@ public class UIManager : MonoBehaviour
 
         CurrentDialogueNode = DialogueData;
         SetNextDialogue();
+
+        DialogueIsOpen = true;
     }
 
     #region Button Functions

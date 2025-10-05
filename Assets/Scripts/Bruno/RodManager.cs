@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using NUnit.Framework;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class RodManager : MonoBehaviour
 {
@@ -38,6 +40,16 @@ public class RodManager : MonoBehaviour
     private PlayerControls playerControls;
     [SerializeField] BaitManager fishingTimer;
     private bool BringingBackBait;
+
+    [SerializeField] AudioSource fishingRodAudio;
+    [SerializeField] AudioSource baitAudio;
+
+    [SerializeField] AudioClip castSound;
+    [SerializeField] AudioClip reelSound;
+    [SerializeField] AudioClip fishCaughtSound;
+    [SerializeField] AudioClip fishNotCaughtSound;
+    [SerializeField] AudioClip baitLandedSound;
+
 
     private void Awake()
     {
@@ -77,9 +89,20 @@ public class RodManager : MonoBehaviour
         {
             canCast = false;
         }
-        else
+
+        if (GameManager.Instance.SoulsDamned + GameManager.Instance.SoulsFreed >= 20)
+        {
+            canCast = false;
+        }
+
+        if(GameManager.Instance.playerHasSoul && !UIManager.Instance.DialogueIsOpen)
         {
             canCast = true;
+        }
+
+        if (UIManager.Instance.DialogueIsOpen)
+        {
+            canCast = false;
         }
 
         BaitVisuals.MovePosition(BaitPosition.position);
@@ -261,7 +284,47 @@ public class RodManager : MonoBehaviour
         // Snap to water surface
         BaitPosition.isKinematic = true;
         bobTimer = 0f;
+        BaitLandedSound();
         Debug.Log("Bait hit water!");
     }
+
+    public void PlayCastSound()
+    {
+        fishingRodAudio.volume = 1f;
+        fishingRodAudio.PlayOneShot(castSound);
+    }
+
+    public void PlayReelingSound()
+    {
+        fishingRodAudio.volume = 0.01f;
+        fishingRodAudio.clip = reelSound;
+        fishingRodAudio.loop = true;
+        fishingRodAudio.Play();
+    }
+
+    public void StopReelingSound()
+    {
+        fishingRodAudio.volume = 1f;
+        fishingRodAudio.loop = false;
+        fishingRodAudio.Stop();
+        fishingRodAudio.clip = null;
+    }
+
+    public void FishCaughtSound()
+    {
+        fishingRodAudio.volume = 0.5f;
+        fishingRodAudio.PlayOneShot(fishCaughtSound);
+    }
+
+    public void FishNotCaughtSound()
+    {
+
+    }
+
+    public void BaitLandedSound()
+    {
+        baitAudio.PlayOneShot(baitLandedSound);
+    }
+
 }
 
