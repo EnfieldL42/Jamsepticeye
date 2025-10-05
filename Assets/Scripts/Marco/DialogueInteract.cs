@@ -13,7 +13,6 @@ public class DialogueInteract : MonoBehaviour, IInteractable
         UIManager.Instance.HideInteractionPrompt();
         PlayerMovement.Instance.MovementDisabled = true;
         Data.Function?.OnDialogueStarted();
-        print("e");
     }
     
     public string GetInteractionPrompt(PlayerHandler Player)

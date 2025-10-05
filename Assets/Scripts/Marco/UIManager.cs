@@ -33,7 +33,9 @@ public class UIManager : MonoBehaviour
     private string CurrentNPCName = "";
 
     [SerializeField] GameObject fishingBar;
+    public GameObject SoulInteractionUI;
 
+    public TextMeshProUGUI SoulInteractionText;
     public bool DialogueIsOpen = false;
 
     private void Awake()
@@ -94,6 +96,7 @@ public class UIManager : MonoBehaviour
         CurrentNPCName = "";
 
         DialogueIsOpen = false;
+        RodManager.Instance.CurrentSoulInteract?.EnableInteractionUI();
     }
 
     private void SetNextDialogue()
@@ -235,7 +238,7 @@ public class UIManager : MonoBehaviour
     public void StartDialogue(DialogueNode DialogueData = default, string NPCName = default)
     {
 
-        if (DialogueData == null) return;
+        if (DialogueData == null || DialogueIsOpen) return;
         CurrentNPCName = NPCName;
 
         CameraMove.Instance.PlayerControlsCamera = false;

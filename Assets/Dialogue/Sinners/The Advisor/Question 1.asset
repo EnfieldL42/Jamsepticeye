@@ -22,12 +22,16 @@ MonoBehaviour:
   - OptionText: "What\u2019s your sin? "
     ClosesDialogue: 0
     ProceedingDialogue: {fileID: 11400000}
+    Function: {fileID: 0}
   - OptionText: 'What do you regret? '
     ClosesDialogue: 0
     ProceedingDialogue: {fileID: 11400000, guid: 4c6702b80f7d7ce4da63c1c0ee28fcf6, type: 2}
+    Function: {fileID: 0}
   - OptionText: 'What stopped you? '
     ClosesDialogue: 0
     ProceedingDialogue: {fileID: 11400000, guid: 95a1ab63f5d3aca4194f8640a6e671e7, type: 2}
+    Function: {fileID: 0}
   - OptionText: Exit
     ClosesDialogue: 1
     ProceedingDialogue: {fileID: 0}
+    Function: {fileID: 0}

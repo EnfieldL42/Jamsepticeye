@@ -92,7 +92,8 @@ public class BaitManager : MonoBehaviour
     {
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.SpawnNextSoulPrefab(soulSpawnPoint);
+            GameObject Soul = GameManager.Instance.SpawnNextSoulPrefab(soulSpawnPoint);
+            RodManager.Instance.CurrentSoulInteract = Soul.GetComponent<SoulInteract>();
         }
     }
 

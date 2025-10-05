@@ -138,6 +138,7 @@ public class GameManager : MonoBehaviour
 
     public void CondemnSoul()
     {
+        RodManager.Instance.CurrentSoulInteract = null;
         playerHasSoul = false;
         SoulsDamned += 1;
         DestroyLastSoul();
@@ -145,6 +146,7 @@ public class GameManager : MonoBehaviour
 
     public void FreeSoul()
     {
+        RodManager.Instance.CurrentSoulInteract = null;
         playerHasSoul = false;
         SoulsFreed += 1;
         DestroyLastSoul();

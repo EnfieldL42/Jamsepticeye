@@ -40,6 +40,7 @@ public class RodManager : MonoBehaviour
     private PlayerControls playerControls;
     [SerializeField] BaitManager fishingTimer;
     private bool BringingBackBait;
+    public SoulInteract CurrentSoulInteract;
 
     [SerializeField] AudioSource fishingRodAudio;
     [SerializeField] AudioSource baitAudio;
@@ -193,30 +194,13 @@ public class RodManager : MonoBehaviour
         bobTimer = 0f;
     }
 
-
-    // Coroutine that continuously moves bait to moving target
-    private IEnumerator SmoothReturn()
-    {
-        while (BringingBackBait)
-        {
-            yield return null;
-            BaitPosition.MovePosition(Vector3.Lerp(BaitPosition.position, BaitReference.position, 2f * Time.deltaTime));
-            BaitPosition.MoveRotation(Quaternion.Slerp(BaitPosition.rotation, BaitReference.rotation, 2f * Time.deltaTime));
-        }
-    }
-
-    // Called when animation finishes
     public void ReturnBait()
     {
-        BringingBackBait = false; // stop SmoothReturn
-
-        // Smoothly move to final target once animation ends
-        //StartCoroutine(FinalReturnCoroutine());
+        BringingBackBait = false;
     }
 
     private Coroutine currentReturnCoroutine;
 
-    // Called by animation event to start return
     public void StartReturningBait()
     {
         if (currentReturnCoroutine != null) StopCoroutine(currentReturnCoroutine);
@@ -225,15 +209,14 @@ public class RodManager : MonoBehaviour
 
     private IEnumerator SmoothReturnWhileAnimation()
     {
-        BaitPosition.isKinematic = true; // disable physics while animation moves it
-        while (BringingBackBait) // animation should set this true/false
+        BaitPosition.isKinematic = true;
+        while (BringingBackBait)
         {
             BaitPosition.position = Vector3.Lerp(BaitPosition.position, BaitReference.position, 2f * Time.deltaTime);
             BaitPosition.rotation = Quaternion.Slerp(BaitPosition.rotation, BaitReference.rotation, 2f * Time.deltaTime);
             yield return null;
         }
 
-        // Animation finished, move smoothly to final position
         float t = 0f;
         Vector3 startPos = BaitPosition.position;
         Quaternion startRot = BaitPosition.rotation;
@@ -246,11 +229,9 @@ public class RodManager : MonoBehaviour
             yield return null;
         }
 
-        // Ensure final position
         BaitPosition.position = BaitReference.position;
         BaitPosition.rotation = BaitReference.rotation;
 
-        // Reconnect joint and restore physics
         BaitJoint.connectedBody = RodTipRigidbody;
         BaitJoint.xMotion = ConfigurableJointMotion.Limited;
         BaitJoint.yMotion = ConfigurableJointMotion.Limited;
@@ -265,6 +246,7 @@ public class RodManager : MonoBehaviour
         CameraMove.Instance.PlayerControlsCamera = true;
 
         currentReturnCoroutine = null;
+        CurrentSoulInteract?.EnableInteractionUI();
     }
 
 
@@ -344,4 +326,5 @@ public class RodManager : MonoBehaviour
     }
 
 }
+
 

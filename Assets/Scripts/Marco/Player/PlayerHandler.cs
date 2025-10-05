@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class PlayerHandler : MonoBehaviour
 {
@@ -26,7 +24,7 @@ public class PlayerHandler : MonoBehaviour
     private bool InteractionListening = true;
 
     [Space, Header("Core Components")]
-    [SerializeField] private Camera BasePlayerCamera;
+    public Camera BasePlayerCamera;
 
     private void Awake()
     {
@@ -34,7 +32,6 @@ public class PlayerHandler : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-
         }
         else
         {
@@ -103,13 +100,14 @@ public class PlayerHandler : MonoBehaviour
                 HideInteraction();
             }
 
-            if (DetectedGameObject != CurrentDetectedObject)
+            if (DetectedGameObject != CurrentDetectedObject && DetectedGameObject.layer == InteractionLayerID && !UIManager.Instance.DialogueIsOpen)
             {
                 if (DetectedGameObject.TryGetComponent<IInteractable>(out IInteractable IInteractableScript))
                 {
                     CurrentDetectedInteractable = IInteractableScript;
                     CurrentDetectedObject = DetectedGameObject;
 
+                    RodManager.Instance.CurrentSoulInteract?.DisableInteractionUI();
                     UIManager.Instance.ShowInteractionPrompt(CurrentDetectedInteractable.GetInteractionPrompt(this));
                 }
             }
@@ -118,6 +116,7 @@ public class PlayerHandler : MonoBehaviour
         {
             if (CurrentDetectedObject != null)
             {
+                RodManager.Instance.CurrentSoulInteract?.EnableInteractionUI();
                 HideInteraction();
             }
         }
