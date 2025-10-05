@@ -163,4 +163,5 @@ public class FishingMechanics : MonoBehaviour
         // Reset fish direction
         fishDirection = Random.value > 0.5f ? 1f : -1f;
     }
+
 }
