@@ -1,12 +1,14 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class RodManager : MonoBehaviour
 {
     [Header("References")]
     public Transform rodTip;
-    public Transform bait;
+    public Rigidbody bait;
     public LayerMask waterLayer;
+    public ConfigurableJoint BaitJoint;
+    public Vector3 Torque;
 
     [Header("Throw Settings")]
     public float throwHeight = 2f;       // vertical boost
@@ -21,6 +23,7 @@ public class RodManager : MonoBehaviour
     private Vector3 velocity;             // current velocity of the bait
     private Vector3 baitOffset;
     private float bobTimer = 0f;          // timer for bobbing
+    bool test;
 
     private PlayerControls playerControls;
     [SerializeField] BaitManager fishingTimer;
@@ -59,11 +62,12 @@ public class RodManager : MonoBehaviour
             canCast = true;
         }
 
+        /*
         // Keep bait at rod tip if not throwing or on water
         if (!isThrowing && !onWater)
         {
-            bait.position = rodTip.position + baitOffset;
-        }
+            bait.MovePosition(rodTip.position + baitOffset);
+        }*/
 
         // Bobbing effect while on water
         if (onWater)
@@ -71,7 +75,7 @@ public class RodManager : MonoBehaviour
             bobTimer += Time.deltaTime * bobFrequency;
             Vector3 bobPos = bait.position;
             bobPos.y += Mathf.Sin(bobTimer * Mathf.PI * 2f) * bobAmplitude;
-            bait.position = bobPos;
+            bait.MovePosition(bobPos);
         }
     }
 
@@ -99,14 +103,22 @@ public class RodManager : MonoBehaviour
     private void ThrowBait()
     {
         // Detach from player so it moves freely
-        bait.parent = null;
+        //bait.transform.parent = null;
+        BaitJoint.connectedBody = null;
+        BaitJoint.xMotion = ConfigurableJointMotion.Free;
+        BaitJoint.yMotion = ConfigurableJointMotion.Free;
+        BaitJoint.zMotion = ConfigurableJointMotion.Free;
+        test = true;
+
 
         // Compute initial velocity
         Vector3 forward = rodTip.forward;
         Vector3 up = Vector3.up;
         velocity = forward * throwSpeed + up * throwHeight;
 
-        isThrowing = true;
+        bait.AddTorque(velocity);
+
+        //isThrowing = true;
         onWater = false;
         bobTimer = 0f;
     }
@@ -116,7 +128,7 @@ public class RodManager : MonoBehaviour
         // Return bait to rod tip
         fishingTimer.timerStarted = false; // reset bite timer
         bait.position = rodTip.position + baitOffset;
-        bait.parent = rodTip; // optional
+        bait.transform.parent = rodTip; // optional
         onWater = false;
         bobTimer = 0f; // reset bob timer
         Debug.Log("Bait returned to rod.");
@@ -124,8 +136,16 @@ public class RodManager : MonoBehaviour
 
     private void Update()
     {
+        if (test)
+        {
+            Torque = rodTip.forward * 2f;
+
+            bait.AddForceAtPosition(Torque, bait.position);
+        }
+
         if (!isThrowing) return;
 
+        print("Hello");
         // Apply gravity
         velocity += Physics.gravity * Time.deltaTime;
 
@@ -139,9 +159,10 @@ public class RodManager : MonoBehaviour
             isThrowing = false;
             onWater = true;
             // Snap to water surface
-            bait.position = hit.point;
+            bait.MovePosition(hit.point);
             bobTimer = 0f;
             Debug.Log("Bait hit water!");
         }
     }
 }
+

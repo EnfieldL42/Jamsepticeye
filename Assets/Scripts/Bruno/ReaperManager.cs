@@ -62,15 +62,18 @@ public class ReaperManager : MonoBehaviour
         if (callReaper)
         {
             callReaper = false;
-            ReaperCallEnvent();
+            ReaperCallEvent();
         }
 
     }
 
     public void GoNextDialogue()
     {
-        dialogueID++;
-        dialogueInteract.StartingDialogue = startingDialoguesByID[dialogueID];
+        if (dialogueID + 1 < startingDialoguesByID.Count)
+        {
+            dialogueID++;
+            dialogueInteract.StartingDialogue = startingDialoguesByID[dialogueID];
+        }
     }
 
 
@@ -93,7 +96,7 @@ public class ReaperManager : MonoBehaviour
         col.enabled = false;
     }
 
-    public void ReaperCallEnvent()
+    public void ReaperCallEvent()
     {
         reaperIsCalling = true;
         StartCalling();
