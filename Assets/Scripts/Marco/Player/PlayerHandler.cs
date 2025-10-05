@@ -16,6 +16,7 @@ public class PlayerHandler : MonoBehaviour
     private IInteractable CurrentDetectedInteractable;
 
     [SerializeField] private LayerMask InteractionLayerMask;
+    [SerializeField] private LayerMask PlayerMask;
     private int InteractionLayerID;
 
     public string InteractionKeybind = "";
@@ -91,13 +92,14 @@ public class PlayerHandler : MonoBehaviour
         Vector3 RaycastOrigin = BasePlayerCamera.transform.position + InteractionOffset;
         Vector3 RaycastDirection = BasePlayerCamera.transform.forward;
 
-        if (Physics.Raycast(RaycastOrigin, RaycastDirection, out DetectedObject, InteractionDistance))
+        if (Physics.Raycast(RaycastOrigin, RaycastDirection, out DetectedObject, InteractionDistance, ~PlayerMask))
         {
             GameObject DetectedGameObject = DetectedObject.transform.gameObject;
 
             if (DetectedGameObject.layer != InteractionLayerID && CurrentDetectedObject != null)
             {
                 HideInteraction();
+                RodManager.Instance.CurrentSoulInteract?.EnableInteractionUI();
             }
 
             if (DetectedGameObject != CurrentDetectedObject && DetectedGameObject.layer == InteractionLayerID && !UIManager.Instance.DialogueIsOpen)

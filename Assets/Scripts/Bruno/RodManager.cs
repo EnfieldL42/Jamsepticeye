@@ -95,7 +95,7 @@ public class RodManager : MonoBehaviour
     {
         if (GameManager.Instance.playerHasSoul)
         {
-            Debug.Log("Player has soul");
+            //Debug.Log("Player has soul");
             canCast = false;
         }
         else if (onWater)
