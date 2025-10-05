@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] int SoulsDamned = 0;
     [SerializeField] int SoulsFreed = 0;
 
+    [Header("Countdown Settings")]
+    public float countdownTime = 10f;
+
     private void Awake()
     {
         if (Instance == null)
@@ -60,6 +63,8 @@ public class GameManager : MonoBehaviour
         {
             LoadingScreenManager.Instance.StopLoading();
         }
+
+        StartCoroutine(ReapersCallCountdown());
     }
 
     private void OnDisable()
@@ -145,16 +150,29 @@ public class GameManager : MonoBehaviour
         DestroyLastSoul();
     }
 
-
     public void OpenFishindRodCollider()
     {
         
     }
 
-
     public void InitializeDeathDialogue()
     {
 
+    }
+
+    private IEnumerator ReapersCallCountdown()
+    {
+        float timer = countdownTime;
+
+        while (timer > 0)
+        {
+            yield return new WaitForSeconds(1f);
+            timer -= 1f;
+        }
+
+        ReaperManager.Instance.ReaperCallEvent();
+
+        yield return null;
     }
 
 }

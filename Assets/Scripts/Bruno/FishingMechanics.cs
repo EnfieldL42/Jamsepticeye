@@ -67,7 +67,7 @@ public class FishingMechanics : MonoBehaviour
 
         if(gameObject.activeSelf == true)
         {
-            rodManager.canCast = false;
+            //rodManager.canCast = false;
         }
     }
 
