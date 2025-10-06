@@ -1,7 +1,8 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class MenuUnderlineButton : MonoBehaviour
+public class MenuUnderlineButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TextMeshProUGUI ButtonText;
     [SerializeField] private RectTransform Underline;
@@ -16,8 +17,9 @@ public class MenuUnderlineButton : MonoBehaviour
         Underline.localScale = new Vector3(0f, Underline.localScale.y);
     }
 
-    public void OnHoverEnter()
+    public void OnPointerEnter(PointerEventData eventData)
     {
+        print("Mouse entered");
         Underline.gameObject.SetActive(true);
         TargetUnderlineScale = ButtonText.GetRenderedValues(false) / Underline.rect.width;
 
@@ -25,7 +27,7 @@ public class MenuUnderlineButton : MonoBehaviour
         ButtonText.SetText($"<pend><b>{InitialText}</b></pend>");
     }
 
-    public void OnHoverExit()
+    public void OnPointerExit(PointerEventData eventData)
     {
         TargetUnderlineScale = Vector2.zero;
         ButtonText.SetText($"</b>{InitialText}");

@@ -59,6 +59,7 @@ public class MenuManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        Time.timeScale = 1f;
         Animator = GetComponent<Animator>();
         Animator.enabled = true;
 
