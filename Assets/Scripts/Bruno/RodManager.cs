@@ -335,7 +335,7 @@ public class RodManager : MonoBehaviour
 
     public void PlayReelingSound()
     {
-        fishingRodAudio.volume = 0.01f;
+        fishingRodAudio.volume = 0.5f;
         fishingRodAudio.clip = reelSound;
         fishingRodAudio.loop = true;
         fishingRodAudio.Play();
