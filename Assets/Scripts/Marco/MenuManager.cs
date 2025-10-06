@@ -61,7 +61,6 @@ public class MenuManager : MonoBehaviour
 
         Time.timeScale = 1f;
         Animator = GetComponent<Animator>();
-        Animator.enabled = true;
 
         if (IsTitleMoving)
         {
