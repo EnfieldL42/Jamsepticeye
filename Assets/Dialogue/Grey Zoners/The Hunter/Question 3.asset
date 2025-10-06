@@ -13,18 +13,23 @@ MonoBehaviour:
   m_Name: Question 3
   m_EditorClassIdentifier: Assembly-CSharp::DialogueOptionsObject
   SpeakerName: The Hunter
-  DialogueText: 
+  DialogueText: "After that day, the woods turned quiet, and I couldn\u2019t go back
+    to what I loved."
   ClosesDialogue: 0
   DialogueOptions:
   - OptionText: "What\u2019s your sin? "
     ClosesDialogue: 0
     ProceedingDialogue: {fileID: 11400000, guid: d06a60af75bb42442aefed7c7521a692, type: 2}
+    Function: {fileID: 0}
   - OptionText: 'What do you regret? '
     ClosesDialogue: 0
     ProceedingDialogue: {fileID: 11400000, guid: 872f079d91116b34b967ba026993fde8, type: 2}
+    Function: {fileID: 0}
   - OptionText: 'What stopped you? '
     ClosesDialogue: 0
     ProceedingDialogue: {fileID: 11400000}
+    Function: {fileID: 0}
   - OptionText: Exit
     ClosesDialogue: 1
     ProceedingDialogue: {fileID: 0}
+    Function: {fileID: 0}

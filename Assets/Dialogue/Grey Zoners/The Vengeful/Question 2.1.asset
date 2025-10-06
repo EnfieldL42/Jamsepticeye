@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78ab65b14fd4c964dafd28a7ba697ced, type: 3}
   m_Name: Question 2.1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueObject
-  SpeakerName: 
+  SpeakerName: The Vengeful
   DialogueText: "That at the end of the day, it didn\u2019t bring me peace."
   ClosesDialogue: 0
   ProceedingDialogue: {fileID: 11400000, guid: 29526a2a63e29a8488d832d5e9c69d61, type: 2}

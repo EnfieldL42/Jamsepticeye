@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78ab65b14fd4c964dafd28a7ba697ced, type: 3}
   m_Name: Question 1.1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueObject
-  SpeakerName: 
+  SpeakerName: The Mother
   DialogueText: "Stealing\u2026 I know \u2019tis against God\u2019s will, but she
     was starving."
   ClosesDialogue: 0

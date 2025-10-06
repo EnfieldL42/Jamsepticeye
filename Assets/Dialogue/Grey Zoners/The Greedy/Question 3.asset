@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e01b4e31da972f8489f98cc209a129f6, type: 3}
   m_Name: Question 3
   m_EditorClassIdentifier: Assembly-CSharp::DialogueOptionsObject
-  SpeakerName: 
+  SpeakerName: The Greedy
   DialogueText: "Death, darling. Even I couldn\u2019t swipe a credit card to escape
     that one."
   ClosesDialogue: 0
@@ -20,12 +20,16 @@ MonoBehaviour:
   - OptionText: "What\u2019s your sin? "
     ClosesDialogue: 0
     ProceedingDialogue: {fileID: 11400000, guid: d1be96d1d6aa204459534ffd8e3095c0, type: 2}
+    Function: {fileID: 0}
   - OptionText: 'What do you regret? '
     ClosesDialogue: 0
     ProceedingDialogue: {fileID: 11400000, guid: 2433f01a6b862c54294579c59ccfa00a, type: 2}
+    Function: {fileID: 0}
   - OptionText: 'What stopped you? '
     ClosesDialogue: 0
     ProceedingDialogue: {fileID: 11400000}
+    Function: {fileID: 0}
   - OptionText: Exit
     ClosesDialogue: 1
     ProceedingDialogue: {fileID: 0}
+    Function: {fileID: 0}

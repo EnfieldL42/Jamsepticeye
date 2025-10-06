@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78ab65b14fd4c964dafd28a7ba697ced, type: 3}
   m_Name: Question 3.1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueObject
-  SpeakerName: 
+  SpeakerName: The Vengeful
   DialogueText: After losing all motivation, I turned myself in.
   ClosesDialogue: 0
   ProceedingDialogue: {fileID: 11400000, guid: 6e8f718ae4698ad49b50b5e4aecfcf51, type: 2}

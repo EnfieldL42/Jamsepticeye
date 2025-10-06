@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78ab65b14fd4c964dafd28a7ba697ced, type: 3}
   m_Name: Question 2.1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueObject
-  SpeakerName: 
+  SpeakerName: The Hunter
   DialogueText: That I set it in the first place. I see his face every time I close
     my eyes.
   ClosesDialogue: 0

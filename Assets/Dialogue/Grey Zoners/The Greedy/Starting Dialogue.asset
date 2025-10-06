@@ -12,19 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e01b4e31da972f8489f98cc209a129f6, type: 3}
   m_Name: Starting Dialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueOptionsObject
-  SpeakerName: 
+  SpeakerName: The Greedy
   DialogueText: ...
   ClosesDialogue: 0
   DialogueOptions:
   - OptionText: "What\u2019s your sin? "
     ClosesDialogue: 0
     ProceedingDialogue: {fileID: 11400000, guid: d1be96d1d6aa204459534ffd8e3095c0, type: 2}
+    Function: {fileID: 0}
   - OptionText: 'What do you regret? '
     ClosesDialogue: 0
     ProceedingDialogue: {fileID: 11400000, guid: 2433f01a6b862c54294579c59ccfa00a, type: 2}
+    Function: {fileID: 0}
   - OptionText: 'What stopped you? '
     ClosesDialogue: 0
     ProceedingDialogue: {fileID: 11400000, guid: 253b8a8f029cfca4b8a8cfecd9a0af64, type: 2}
+    Function: {fileID: 0}
   - OptionText: Exit
     ClosesDialogue: 1
     ProceedingDialogue: {fileID: 0}
+    Function: {fileID: 0}
