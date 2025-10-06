@@ -167,7 +167,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 520
+    m_Bits: 512
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -767,6 +767,7 @@ MonoBehaviour:
   BaitJoint: {fileID: 2605703150125264733}
   BaitGravity: {fileID: 5649096795873839794}
   BaitVisuals: {fileID: 3452855200586246515}
+  CoinVisuals: {fileID: 4950712823762400065}
   RodTipRigidbody: {fileID: 6258968412137877077}
   DefaultGravity: {x: 0, y: -300, z: 0}
   FishingGravity: {x: 0, y: -100, z: 0}
@@ -2487,7 +2488,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6425648665965588039}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.82699966, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3639,6 +3640,7 @@ MonoBehaviour:
   BaitJoint: {fileID: 3125269070154144719}
   BaitGravity: {fileID: 0}
   BaitVisuals: {fileID: 0}
+  CoinVisuals: {fileID: 0}
   RodTipRigidbody: {fileID: 0}
   DefaultGravity: {x: 0, y: -300, z: 0}
   FishingGravity: {x: 0, y: -20, z: 0}
@@ -3893,19 +3895,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 009548cae2bb7a7479519a57171737b9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.78075194
+      value: 0.7807519
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 009548cae2bb7a7479519a57171737b9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.30508202
+      value: 0.30508214
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 009548cae2bb7a7479519a57171737b9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000026077032
+      value: -0.00000020116568
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 009548cae2bb7a7479519a57171737b9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.5452995
+      value: 0.5452994
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 009548cae2bb7a7479519a57171737b9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3922,6 +3924,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 009548cae2bb7a7479519a57171737b9, type: 3}
       propertyPath: m_Name
       value: Coin
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 009548cae2bb7a7479519a57171737b9, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

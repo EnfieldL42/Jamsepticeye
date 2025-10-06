@@ -21,7 +21,7 @@ public class MenuManager : MonoBehaviour
     private Quaternion StartingCameraRotation;
     private Animator Animator;
 
-    private bool ButtonsEnabled = true;
+    public bool ButtonsEnabled = true;
     private float MasterVolume;
     private bool ChangingMasterVolume = false;
     private bool VsyncEnabled = false;
@@ -45,7 +45,7 @@ public class MenuManager : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
 
-        SceneManager.LoadSceneAsync(1);
+        SceneManager.LoadScene(1);
     }
 
     private void Awake()
@@ -60,6 +60,7 @@ public class MenuManager : MonoBehaviour
         }
 
         Animator = GetComponent<Animator>();
+        Animator.enabled = true;
 
         if (IsTitleMoving)
         {

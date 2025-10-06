@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
     private float TargetSpeed = 0f;
 
     public bool UpdatingGameTime = false;
-    private bool GamePaused = false;
+    public bool GamePaused = false;
+    public bool CanPauseGame = true;
 
     private float StartSpeed = 0f;
     private bool Initialized = false;
@@ -38,7 +39,6 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -88,16 +88,63 @@ public class GameManager : MonoBehaviour
         Controls.Disable();
     }
 
-    private void ToggleEscapeMenu(InputAction.CallbackContext ctx)
+    public void ToggleEscapeMenu(InputAction.CallbackContext ctx = default)
     {
+        if (!CanPauseGame) return;
+        CanPauseGame = false;
+
         GamePaused = !GamePaused;
         CameraMove.Instance.PlayerControlsCamera = !GamePaused;
+
         UpdatingGameTime = true;
+        StartCoroutine(TogglePauseMenu(GamePaused));
+
+        if (GamePaused)
+        {
+            SetCurstorState(CursorLockMode.None, true);
+        }
+        else
+        {
+            SetCurstorState(CursorLockMode.Locked, false);
+        }
 
         TimeElapsed = 0f;
         StartSpeed = Time.timeScale;
         TargetSpeed = GamePaused ? 0f : 1f;
     }
+
+    private IEnumerator TogglePauseMenu(bool showing)
+    {
+        float t = 0f;
+        float duration = 0.25f;
+        float start = showing ? 0f : 1f;
+        float end = showing ? 1f : 0f;
+
+        if (showing)
+        {
+            UIManager.Instance.PauseMenuCanvas.gameObject.SetActive(true);
+        }
+
+        while (t < 1f)
+        {
+            t += Time.unscaledDeltaTime / duration;
+            UIManager.Instance.PauseMenuCanvas.alpha = Mathf.Lerp(start, end, t);
+            yield return null;
+        }
+
+        UIManager.Instance.PauseMenuCanvas.interactable = showing;
+        UIManager.Instance.PauseMenuCanvas.blocksRaycasts = showing;
+
+        UIManager.Instance.PauseMenuCanvas.alpha = end;
+
+        if (!showing)
+        {
+            UIManager.Instance.PauseMenuCanvas.gameObject.SetActive(false);
+        }
+
+        CanPauseGame = true;
+    }
+
 
     public void StopUpdatingGameTime()
     {
@@ -107,7 +154,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (!Initialized) return;
-        UIManager.Instance.FPSText.SetText("FPS {0:0}", 1 / Time.unscaledDeltaTime);
+        //UIManager.Instance.FPSText.SetText("FPS {0:0}", 1 / Time.unscaledDeltaTime);
 
         if (!UpdatingGameTime) return;
 

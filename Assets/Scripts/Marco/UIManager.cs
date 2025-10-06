@@ -33,6 +33,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private DialogueButton DialogueOptionPrefab;
     private string CurrentNPCName = "";
 
+    [Space, Header("Pause Menu UI")]
+    public CanvasGroup PauseMenuCanvas;
+
     [SerializeField] GameObject fishingBar;
     public GameObject SoulInteractionUI;
 
@@ -81,6 +84,11 @@ public class UIManager : MonoBehaviour
         Controls.PlayerActions.DialogueSkip.started -= ProceedDialogue;
     }
 
+    public void ResumeGame()
+    {
+        GameManager.Instance.ToggleEscapeMenu();
+    }
+
     public void ShowInteractionPrompt(string Text = default)
     {
         InteractionText.SetText(Text);
@@ -115,6 +123,12 @@ public class UIManager : MonoBehaviour
 
         DialogueIsOpen = false;
         RodManager.Instance.CurrentSoulInteract?.EnableInteractionUI();
+        GameManager.Instance.CanPauseGame = true;
+    }
+
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
     private void SetNextDialogue()
@@ -224,14 +238,21 @@ public class UIManager : MonoBehaviour
         InTypewriter = true;
         DialogueName.gameObject.SetActive(!string.IsNullOrEmpty(Data.SpeakerName));
 
-        if (Data.SpeakerName.ToLower() == "{npc_name}")
+        if (string.IsNullOrEmpty(Data.SpeakerName))
         {
+            DialogueName.transform.parent.gameObject.SetActive(false);
+        }
+        else if (Data.SpeakerName.ToLower() == "{npc_name}")
+        {
+            DialogueName.transform.parent.gameObject.SetActive(true);
             DialogueName.SetText(CurrentNPCName);
         }
         else
         {
+            DialogueName.transform.parent.gameObject.SetActive(true);
             DialogueName.SetText(Data.SpeakerName);
         }
+
         DialogueText.ShowText(Data.DialogueText);
         DialogueText.StartShowingText();
     }
@@ -240,12 +261,18 @@ public class UIManager : MonoBehaviour
     {
         InTypewriter = true;
 
-        if (Data.SpeakerName.ToLower() == "{npc_name}")
+        if (string.IsNullOrEmpty(Data.SpeakerName))
         {
+            DialogueName.transform.parent.gameObject.SetActive(false);
+        }
+        else if (Data.SpeakerName.ToLower() == "{npc_name}")
+        {
+            DialogueName.transform.parent.gameObject.SetActive(true);
             DialogueName.SetText(CurrentNPCName);
         }
         else
         {
+            DialogueName.transform.parent.gameObject.SetActive(true);
             DialogueName.SetText(Data.SpeakerName);
         }
 
@@ -269,6 +296,7 @@ public class UIManager : MonoBehaviour
         SetNextDialogue();
 
         DialogueIsOpen = true;
+        GameManager.Instance.CanPauseGame = false;
     }
 
     #region Button Functions

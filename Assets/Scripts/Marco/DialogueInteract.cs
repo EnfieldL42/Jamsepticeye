@@ -18,7 +18,8 @@ public class DialogueInteract : MonoBehaviour, IInteractable
     public string GetInteractionPrompt(PlayerHandler Player)
     {
         bool RequireHold = Data.HoldTime > 0;
-        return RequireHold ? $"- {Data.Name} -\n\nHold [{Player.InteractionKeybind}] to {Data.Description}" : $"- {Data.Name} -\n\nPress [{Player.InteractionKeybind}] to {Data.Description}";
+        string DialogueName = string.IsNullOrEmpty(Data.Name) ? "" : $"- {Data.Name} - ";
+        return RequireHold ? $"{DialogueName}\n\nHold [{Player.InteractionKeybind}] to {Data.Description}" : $"{DialogueName}\n\nPress [{Player.InteractionKeybind}] to {Data.Description}";
     }
 
     public float GetHoldTime(PlayerHandler Player)

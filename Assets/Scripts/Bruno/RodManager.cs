@@ -15,6 +15,7 @@ public class RodManager : MonoBehaviour
 
     public ConstantForce BaitGravity;
     public Rigidbody BaitVisuals;
+    public Transform CoinVisuals;
 
     public Rigidbody RodTipRigidbody;
     public Vector3 DefaultGravity = new Vector3(0, -300, 0);
@@ -207,6 +208,7 @@ public class RodManager : MonoBehaviour
         }
 
         BaitVisuals.gameObject.layer = DefaultLayerID;
+        CoinVisuals.gameObject.layer = DefaultLayerID;
         BaitPosition.transform.SetParent(GameManager.Instance.World);
 
         BaitJoint.connectedBody = null;
@@ -282,7 +284,9 @@ public class RodManager : MonoBehaviour
         currentReturnCoroutine = null;
         CurrentSoulInteract?.EnableInteractionUI();
         BaitPosition.transform.SetParent(transform);
+
         BaitVisuals.gameObject.layer = ItemLayerID;
+        CoinVisuals.gameObject.layer = ItemLayerID;
     }
 
 

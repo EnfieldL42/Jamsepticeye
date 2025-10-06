@@ -32,7 +32,6 @@ public class PlayerHandler : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -66,7 +65,7 @@ public class PlayerHandler : MonoBehaviour
 
     private void Interact(InputAction.CallbackContext ctx)
     {
-        if (CurrentDetectedInteractable == null) return;
+        if (CurrentDetectedInteractable == null || GameManager.Instance.GamePaused) return;
 
         CurrentDetectedInteractable.OnInteracted(this);
     }
