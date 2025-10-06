@@ -19,7 +19,6 @@ public class PlayerInputManager : MonoBehaviour
         if (playerInputManager == null)
         {
             playerInputManager = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
