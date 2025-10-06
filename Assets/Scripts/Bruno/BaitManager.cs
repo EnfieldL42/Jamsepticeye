@@ -45,6 +45,7 @@ public class BaitManager : MonoBehaviour
         if (RodManager.Instance.isThrowing && transform.position.y < GameManager.Instance.Water.position.y - 5f)
         {
             RodManager.Instance.FishingRodAnimator.Play("Rod Return");
+            RodManager.Instance.isThrowing = false;
             return;
         }
 
