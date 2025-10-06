@@ -52,6 +52,7 @@ public class PlayerHandler : MonoBehaviour
         Controls.PlayerActions.Interact.started += Interact;
 
         InteractionLayerID = (int)Mathf.Log(InteractionLayerMask.value, 2);
+        RodManager.Instance.transform.gameObject.SetActive(false);
         PlayerInitialized = true;
     }
 
