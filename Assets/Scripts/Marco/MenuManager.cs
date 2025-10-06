@@ -169,13 +169,15 @@ public class MenuManager : MonoBehaviour
         MasterVolumePercentage.SetText("{0}%", Mathf.Round(MasterVolumeSlider.value * 100f));
 
         PlayerPrefs.SetFloat("MasterVolume", MasterVolumeSlider.value);
+        PlayerPrefs.Save();
     }
 
 
     public void LoadVolume()
     {
-        MasterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume"); 
-        
+        MasterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume");
+        MasterVolumePercentage.SetText("{0}%", Mathf.Round(MasterVolumeSlider.value * 100f));
+
         SetMasterVolume();
     }
 
