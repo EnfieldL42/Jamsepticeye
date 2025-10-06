@@ -99,6 +99,9 @@ public class GameManager : MonoBehaviour
         UpdatingGameTime = true;
         StartCoroutine(TogglePauseMenu(GamePaused));
 
+        UIManager.Instance.PauseMenuCanvas.interactable = false;
+        UIManager.Instance.PauseMenuCanvas.blocksRaycasts = false;
+
         if (GamePaused)
         {
             SetCurstorState(CursorLockMode.None, true);

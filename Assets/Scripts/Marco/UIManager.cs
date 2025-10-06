@@ -242,7 +242,7 @@ public class UIManager : MonoBehaviour
     private void ShowRegularDialogue(DialogueObject Data = default)
     {
         InTypewriter = true;
-        DialogueName.gameObject.SetActive(!string.IsNullOrEmpty(Data.SpeakerName));
+        //DialogueName.gameObject.SetActive(!string.IsNullOrEmpty(Data.SpeakerName));
 
         if (string.IsNullOrEmpty(Data.SpeakerName))
         {
@@ -278,6 +278,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
+            print("Set");
             DialogueName.transform.parent.gameObject.SetActive(true);
             DialogueName.SetText(Data.SpeakerName);
         }
