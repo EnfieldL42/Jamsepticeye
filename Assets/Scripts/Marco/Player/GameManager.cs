@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     private bool Initialized = false;
     public Transform World;
     public Transform Water;
+    private bool CursorLockedExternally = false;
 
     [Header("Souls Prefabs")]
     public List<GameObject> SoulPrefabs = new List<GameObject>();
@@ -47,10 +48,22 @@ public class GameManager : MonoBehaviour
         AudioListener.volume = PlayerPrefs.GetFloat("MasterVolme", 1f);
     }
 
-    public void SetCurstorState(CursorLockMode LockMode = default, bool Visible = default)
+    public void SetCurstorState(CursorLockMode LockMode = default, bool Visible = default, bool ForceOverride = default)
     {
+        if (CursorLockedExternally && !ForceOverride)
+        {
+            return;
+        }
+
         Cursor.lockState = LockMode;
         Cursor.visible = Visible;
+
+        print("Hid everything");
+    }
+
+    public void LockCursorExternal(bool locked)
+    {
+        CursorLockedExternally = locked;
     }
 
     private void Start()

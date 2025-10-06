@@ -46,6 +46,7 @@ public class CameraMove : MonoBehaviour
     private void Start()
     {
         Controls = PlayerInputManager.playerInputManager.playerControls;
+        Controls.Enable();
         Controls.PlayerMovement.Look.started += OnCameraMoved;
 
         Controls.PlayerMovement.Look.canceled += OnCameraStopped;
@@ -62,6 +63,7 @@ public class CameraMove : MonoBehaviour
 
     private void OnCameraMoved(InputAction.CallbackContext ctx)
     {
+        print("Move input");
         CameraInputs = ctx.ReadValue<Vector2>();
     }
 

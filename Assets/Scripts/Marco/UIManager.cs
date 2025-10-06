@@ -316,7 +316,8 @@ public class UIManager : MonoBehaviour
 
         Time.timeScale = 0f;
 
-        GameManager.Instance.SetCurstorState(CursorLockMode.None, true);
+        GameManager.Instance.LockCursorExternal(true);
+        GameManager.Instance.SetCurstorState(CursorLockMode.None, true, true);
 
         yield return null;
     }
