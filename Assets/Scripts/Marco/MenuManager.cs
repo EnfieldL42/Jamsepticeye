@@ -25,6 +25,7 @@ public class MenuManager : MonoBehaviour
     private float MasterVolume;
     private bool ChangingMasterVolume = false;
     private bool VsyncEnabled = false;
+    private float LastVolume = 1f;
 
     [Header("Main UI Elements")]
     [SerializeField] private TextMeshProUGUI TitleText;
@@ -111,6 +112,13 @@ public class MenuManager : MonoBehaviour
 
         Quaternion TargetRotation = StartingCameraRotation * Quaternion.Euler(MouseY * CameraRotationStrength, -MouseX * CameraRotationStrength, 0f);
         MenuCamera.transform.rotation = Quaternion.Slerp(MenuCamera.transform.rotation, TargetRotation, Time.deltaTime * CameraSmoothSpeed);
+
+        if (MasterVolumeSlider.value != LastVolume)
+        {
+            LastVolume = MasterVolumeSlider.value;
+            print("Updated");
+            MasterVolumePercentage.SetText("{0}%", Mathf.Round(MasterVolumeSlider.value * 100f));
+        }
     }
 
     public void StartGame()
@@ -166,7 +174,6 @@ public class MenuManager : MonoBehaviour
             volume = 0.0001f;
 
         mixer.SetFloat("Master", Mathf.Log10(volume) * 20);
-        MasterVolumePercentage.SetText("{0}%", Mathf.Round(MasterVolumeSlider.value * 100f));
 
         PlayerPrefs.SetFloat("MasterVolume", MasterVolumeSlider.value);
         PlayerPrefs.Save();

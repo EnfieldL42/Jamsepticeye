@@ -19,7 +19,6 @@ public class MenuUnderlineButton : MonoBehaviour, IPointerEnterHandler, IPointer
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        print("Mouse entered");
         Underline.gameObject.SetActive(true);
         TargetUnderlineScale = ButtonText.GetRenderedValues(false) / Underline.rect.width;
 
