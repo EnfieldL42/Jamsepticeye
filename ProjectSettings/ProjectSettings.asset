@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: DefaultCompany
   productName: Jamsepticeye
-  defaultCursor: {fileID: 2800000, guid: 34bef85696c7ffd4fb3416158ab4cfb7, type: 3}
+  defaultCursor: {fileID: 2800000, guid: ed6098904a61f7749846bbba862552cf, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
