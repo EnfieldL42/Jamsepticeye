@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Starting Dialogue (withoutFree)
   m_EditorClassIdentifier: Assembly-CSharp::DialogueOptionsObject
   SpeakerName: 
-  DialogueText: Condamn the soul?
+  DialogueText: Condemn the soul?
   ClosesDialogue: 0
   DialogueOptions:
   - OptionText: Condemn Soul
