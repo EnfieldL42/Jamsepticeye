@@ -48,6 +48,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private float fadeDuration = 1.5f;
     private CanvasGroup endScreenCanvasGroup;
 
+    [SerializeField] TextMeshProUGUI howManySouls;
+
 
     private void Awake()
     {
@@ -84,6 +86,10 @@ public class UIManager : MonoBehaviour
         Controls.PlayerActions.DialogueSkip.started -= ProceedDialogue;
     }
 
+    private void Update()
+    {
+        UpdateHowManySouls();
+    }
     public void ResumeGame()
     {
         GameManager.Instance.ToggleEscapeMenu();
@@ -356,4 +362,10 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
     #endregion
+
+
+    public void UpdateHowManySouls()
+    {
+        howManySouls.text = "You have judged: " + (GameManager.Instance.SoulsFreed + GameManager.Instance.SoulsDamned) + " / 20 souls";
+    }
 }
