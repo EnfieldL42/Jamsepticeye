@@ -63,7 +63,6 @@ public class CameraMove : MonoBehaviour
 
     private void OnCameraMoved(InputAction.CallbackContext ctx)
     {
-        print("Move input");
         CameraInputs = ctx.ReadValue<Vector2>();
     }
 

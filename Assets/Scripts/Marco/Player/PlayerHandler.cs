@@ -96,6 +96,8 @@ public class PlayerHandler : MonoBehaviour
         {
             GameObject DetectedGameObject = DetectedObject.transform.gameObject;
 
+            print(DetectedGameObject.name);
+
             if (DetectedGameObject.layer != InteractionLayerID && CurrentDetectedObject != null)
             {
                 HideInteraction();
